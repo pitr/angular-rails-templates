@@ -15,5 +15,8 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
 
-  s.add_dependency "railties", [">= 3.1"]
+  s.add_dependency "railties",  [">= 3.1"]
+  s.add_dependency "sprockets-rails"
+
+  s.add_development_dependency "uglifier"
 end
