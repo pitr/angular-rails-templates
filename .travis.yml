@@ -1,5 +1,9 @@
 rvm:
   - 1.9.3
   - 2.0.0
-  - jruby
+  - jruby-19mode
   - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
