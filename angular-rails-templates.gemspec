@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = "Use your angular templates with rails' asset pipeline"
 
   s.files = %w(README.md LICENSE) + Dir["lib/**/*", "app/**/*"]
+  s.license = 'MIT'
 
   s.require_paths = ["lib"]
 
