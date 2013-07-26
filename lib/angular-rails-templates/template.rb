@@ -16,9 +16,9 @@ module AngularRailsTemplates
       <<-EOS
 window["#{module_name}"] = window["#{module_name}"] || angular.module("#{module_name}", []);
 
-window["#{module_name}"].run(function($templateCache) {
+window["#{module_name}"].run(["$templateCache", function($templateCache) {
   $templateCache.put(#{logical_template_path.inspect}, #{data.to_json});
-});
+}]);
       EOS
     end
 
