@@ -19,17 +19,23 @@ Then, in your `application.js` file, require your templates and the internal jav
 Your template files can have the extensions **.html** or **.ajs**
 
 
-In your application, add a dependency to the `templates` module.
+In your application, add a dependency to the `templates` module, like so:
+
+    angular.module("MyApp", ["templates"])
 
 ## Main difference from original gem
 
 This fork uses actual file names with paths as keys, this is the only difference.
 
-You can change location of your templates folder like so:
+You can change location of your templates folder in your initializers:
 
-    config.templates_dir = "path/to/my/templates"
+    Rails.configuration.angular_templates.templates_dir = "angular/templates"
 
-by default "angular/templates" is used.
+by default `angular/templates` folder is used. `templates_dir` will be trimmed for all angularjs template keys.
+
+You can also change angularjs module name:
+
+    Rails.configuration.angular_templates.module_name = "templates"
 
 ## License
 
