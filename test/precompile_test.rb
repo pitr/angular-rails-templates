@@ -17,14 +17,14 @@ class PrecompileTest < TestCase
   def precompile!(rails_env)
     ENV['RAILS_ENV'] = rails_env
 
-    quietly do 
+    quietly do
       Dir.chdir(app_path) { `bundle exec rake assets:precompile` }
     end
 
     appjs = Dir["#{app_path}/public/assets/application*.js"].first
     assert !appjs.nil?, "the file #{app_path}/public/assets/application.js should exist"
     contents = File.read(appjs)
-    assert_match /window\.AngularRailsTemplates/, contents
+
     assert_match /angular\.module/, contents
     assert_match /template\.html/, contents
   end

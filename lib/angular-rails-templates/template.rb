@@ -10,22 +10,38 @@ module AngularRailsTemplates
     def prepare; end
 
     def evaluate(scope, locals, &block)
-      key         = file.split('/').last
-      module_name = "#{configuration.module_name}-#{key.split('.')[0...-1].join('.')}"
+      module_name           = configuration.module_name
+      logical_template_path = logical_template_path(scope)
 
       <<-EOS
-angular.module(#{module_name.inspect}, []).run(function($templateCache) {
-  $templateCache.put(#{key.inspect}, #{data.to_json});
-});
+window["#{module_name}"] = window["#{module_name}"] || angular.module("#{module_name}", []);
 
-if (typeof window.AngularRailsTemplates === 'undefined') {
-  window.AngularRailsTemplates = [];
-}
-window.AngularRailsTemplates.push(#{module_name.inspect});
+window["#{module_name}"].run(function($templateCache) {
+  $templateCache.put(#{logical_template_path.inspect}, #{data.to_json});
+});
       EOS
     end
 
     private
+
+    def logical_template_path(scope)
+      logical_path = "#{scope.logical_path}.#{basename.split(".")[1]}"
+
+      if logical_path.start_with?(templates_dir)
+        logical_path = logical_path[ (templates_dir.length + 1) ..-1]
+      end
+
+      logical_path
+    end
+
+    def templates_dir
+      dir = configuration.templates_dir
+      if dir.end_with? "/"
+        dir = dir[0..-2]
+      end
+      dir
+    end
+
     def configuration
       ::Rails.configuration.angular_templates
     end
