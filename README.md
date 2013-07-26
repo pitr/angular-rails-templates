@@ -16,13 +16,12 @@ Then, in your `application.js` file, require your templates and the internal jav
     //= require angularjs
     //= require_tree ./path_to_your_templates
 
-The `require angular-rails-templates` **needs** to happen after requiring all your templates. Otherwise, they won't be loaded.
 Your template files can have the extensions **.html** or **.ajs**
 
 
 In your application, add a dependency to the `templates` module.
 
-## Main difference of original gem
+## Main difference from original gem
 
 This fork uses actual file names with paths as keys, this is the only difference.
 
