@@ -22,6 +22,11 @@ Your template files can have the extensions **.html** or **.ajs**
 
 In your application, add a dependency to the `templates` module.
 
+    var application = angular.module('myApplication', ['templates']);
+
+Loading this module will automatically load all your templates into angular's `$templateCache`.  
+Angular uses this parameter when checking for the presence of templates before making an HTTP call.
+
 ## How it works
 
 Because of the way angular's modules work, we cannot create one templates module which would load all the templates.  
@@ -30,7 +35,8 @@ Therefore, we create one module per template. It's callsed `templates-<template-
 Also, because we cannot dynamically retrieve a list of all angular modules to find the ones matching our templates and include them, we add a root variable which contains the list of all our templates modules.  
 It is `window.AngularRailsTemplates`.
 
-When you `require angular-rails-templates`, we create the `templates` module, which has dependencies to all the templates previously defined. Therefore including all our templates.
+When you `require angular-rails-templates`, we create the `templates` module, which has dependencies to all the templates previously defined. Therefore including all our templates.  
+You can check the content of this `templates` module in [angular-rails-templates.js.erb](https://github.com/dmathieu/angular-rails-templates/blob/master/app/assets/javascripts/angular-rails-templates.js.erb).
 
 ## License
 
