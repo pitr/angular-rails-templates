@@ -45,3 +45,5 @@ MIT License. Copyright 2013 Damien Mathieu
 ## Authors & contributors
 
 * Damien Mathieu <42@dmathieu.com>
+* Roman <luckyjazzbo@gmail.com>
+
