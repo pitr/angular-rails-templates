@@ -14,9 +14,9 @@ module AngularRailsTemplates
       module_name = "#{configuration.module_name}-#{key.split('.')[0...-1].join('.')}"
 
       <<-EOS
-angular.module(#{module_name.inspect}, []).run(function($templateCache) {
+angular.module(#{module_name.inspect}, []).run(["$templateCache",function($templateCache) {
   $templateCache.put(#{key.inspect}, #{data.to_json});
-});
+}]);
 
 if (typeof window.AngularRailsTemplates === 'undefined') {
   window.AngularRailsTemplates = [];
