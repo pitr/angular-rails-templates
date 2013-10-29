@@ -29,7 +29,8 @@ window.AngularRailsTemplates.push(#{module_name.inspect});
     def logical_template_path(scope)
       path = scope.logical_path
       path.gsub!(Regexp.new("^#{configuration.ignore_prefix}"), "")
-      "#{path}.#{basename.split(".")[1]}"
+      ext = basename.split(".")[1]
+      "#{path}.#{ext}"
     end
 
     def configuration
