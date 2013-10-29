@@ -14,14 +14,12 @@ module AngularRailsTemplates
       logical_template_path = logical_template_path(scope)
 
       <<-EOS
-angular.module(#{module_name.inspect}, []).run(["$templateCache",function($templateCache) {
+
+window.AngularRailsTemplates || (window.AngularRailsTemplates = angular.module(#{module_name.inspect}, []));
+
+window.AngularRailsTemplates.run(["$templateCache",function($templateCache) {
   $templateCache.put(#{logical_template_path.inspect}, #{data.to_json});
 }]);
-
-if (typeof window.AngularRailsTemplates === 'undefined') {
-  window.AngularRailsTemplates = [];
-}
-window.AngularRailsTemplates.push(#{module_name.inspect});
       EOS
     end
 
