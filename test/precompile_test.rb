@@ -29,7 +29,10 @@ class PrecompileTest < TestCase
     assert_match /angular\.module/, contents
     assert_match /\.put\("template\.html",/, contents
     assert_match /\.put\("subfolder\/template\.html",/, contents
+    assert_match /\.put\("hello-world\.html",/, contents
     assert_match /\.put\("erb_template\.html",/, contents
+
+    assert_not_match /ignored_namespace/, contents
   end
 
   def app_path
