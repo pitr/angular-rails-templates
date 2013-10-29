@@ -27,8 +27,9 @@ class PrecompileTest < TestCase
 
     assert_match /window\.AngularRailsTemplates/, contents
     assert_match /angular\.module/, contents
-    assert_match /template\.html/, contents
-    assert_match /subfolder\/template\.html/, contents
+    assert_match /\.put\("template\.html",/, contents
+    assert_match /\.put\("subfolder\/template\.html",/, contents
+    assert_match /\.put\("erb_template\.html",/, contents
   end
 
   def app_path
