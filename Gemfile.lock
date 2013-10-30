@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    angular-rails-templates (0.0.3)
+    angular-rails-templates (0.0.4)
       railties (>= 3.1)
       sprockets-rails
 
