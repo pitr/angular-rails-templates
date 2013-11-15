@@ -11,4 +11,3 @@
 // about supported directives.
 //
 //= require_tree .
-//= require angular-rails-templates
