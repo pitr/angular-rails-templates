@@ -26,6 +26,6 @@ module Dummy
     # config.i18n.default_locale = :de
 
     config.angular_templates.ignore_prefix = 'ignored_namespace/'
+    config.assets.enabled = true
   end
 end
-
