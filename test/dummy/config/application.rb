@@ -2,7 +2,11 @@ require File.expand_path('../boot', __FILE__)
 
 require "action_controller/railtie"
 require "rails/test_unit/railtie"
-require 'sprockets/rails'
+begin
+  require 'sprockets/rails'
+rescue Exception
+  require "sprockets/railtie"
+end
 
 Bundler.require(*Rails.groups)
 require "angular-rails-templates"
