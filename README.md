@@ -31,6 +31,14 @@ var application = angular.module('myApplication', ['templates']);
 Loading this module will automatically load all your templates into angular's `$templateCache`.
 Angular uses this parameter when checking for the presence of templates before making an HTTP call.
 
+The templates can then be accessed via `templateUrl` as expected:
+
+``` javascript
+{
+  templateUrl: 'path_to_your_templates/yourTemplate.html'
+}
+```
+
 ## How it works
 
 We create the `templates` module (configurable through `config.angular_templates.module_name` in your application.rb), which populates Angular's `$templateCache` with all your templates when the module is included in your app.
