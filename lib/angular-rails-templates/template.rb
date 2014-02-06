@@ -1,3 +1,4 @@
+require 'slim'
 require 'sprockets'
 require 'sprockets/engines'
 
@@ -14,16 +15,23 @@ module AngularRailsTemplates
       logical_template_path = logical_template_path(scope)
 
       <<-EOS
-
 window.AngularRailsTemplates || (window.AngularRailsTemplates = angular.module(#{module_name.inspect}, []));
 
 window.AngularRailsTemplates.run(["$templateCache",function($templateCache) {
-  $templateCache.put(#{logical_template_path.inspect}, #{data.to_json});
+  $templateCache.put(#{logical_template_path.inspect}, #{content.to_json});
 }]);
       EOS
     end
 
     private
+
+    def content
+      case File.extname(file)
+      when /ast/ then Slim::Template.new(file).render
+      else data
+      end
+    end
+
     def logical_template_path(scope)
       path = scope.logical_path
       path.gsub!(Regexp.new("^#{configuration.ignore_prefix}"), "")
