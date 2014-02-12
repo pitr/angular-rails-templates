@@ -5,7 +5,7 @@ module AngularRailsTemplates
     config.angular_templates.ignore_prefix = 'templates/'
 
     config.before_initialize do |app|
-      if app.config.assets.enabled
+      if app.config.assets
         require 'sprockets'
         Sprockets::Engines #force autoloading
         Sprockets.register_engine '.ajs', AngularRailsTemplates::Template
