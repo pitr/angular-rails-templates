@@ -1,4 +1,4 @@
-# Angular Rails Templates [![Build Status](https://secure.travis-ci.org/dmathieu/angular-rails-templates.png?branch=master)](http://travis-ci.org/dmathieu/angular-rails-templates)
+# Angular Rails Templates [![Build Status](https://secure.travis-ci.org/pitr/angular-rails-templates.png?branch=master)](http://travis-ci.org/pitr/angular-rails-templates)
 
 Behind the hideous Angular Rails Templates name is hiding a template management system for rails' asset pipeline and AngularJS' template views.
 

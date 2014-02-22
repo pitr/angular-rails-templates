@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Damien Mathieu", 'pitr']
   s.email       = ["42@dmathieu.com"]
-  s.homepage    = "https://github.com/dmathieu/angular-rails-templates"
+  s.homepage    = "https://github.com/pitr/angular-rails-templates"
   s.summary     = "Use your angular templates with rails' asset pipeline"
 
   s.files = %w(README.md LICENSE) + Dir["lib/**/*", "app/**/*"]
