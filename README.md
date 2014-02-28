@@ -20,7 +20,7 @@ Then, in your `application.js` file, require your templates and the internal jav
 //= require_tree ./path_to_your_templates
 ```
 
-Your template files can have the extensions **.html** or **.ajs**
+Your template files can have the extensions **.html** or **.ajs** and should live in `app/assets/javascripts/templates`.
 
 In your application, add a dependency to the `templates` module.
 
