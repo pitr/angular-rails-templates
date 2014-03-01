@@ -1,6 +1,9 @@
 module AngularRailsTemplates
+  HAML_EXT = '.aht'
+  SLIM_EXT = '.ast'
+
   autoload :Template        , 'angular-rails-templates/template'
-  autoload :GenericTemplate , 'angular-rails-templates/generic_template'
+  autoload :BaseTemplate    , 'angular-rails-templates/base_template'
   autoload :SlimTemplate    , 'angular-rails-templates/slim_template'
   autoload :HamlTemplate    , 'angular-rails-templates/haml_template'
   autoload :Version         , 'angular-rails-templates/version'

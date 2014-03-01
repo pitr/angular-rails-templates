@@ -7,9 +7,17 @@ module AngularRailsTemplates
       'application/javascript'
     end
 
+    def prepare ; end
+
     def evaluate(scope, locals, &block)
-      logical_template_path = logical_template_path(scope)
-      script_template(logical_template_path, @engine.render)
+      template = case File.extname(file)
+               when HAML_EXT then HamlTemplate.new(self)
+               when SLIM_EXT then SlimTemplate.new(self)
+               else
+                 BaseTemplate.new(self)
+               end
+
+      render_script_template(logical_template_path(scope), template.render)
     end
 
     protected
@@ -28,7 +36,7 @@ module AngularRailsTemplates
       ::Rails.configuration.angular_templates
     end
 
-    def script_template(path, data)
+    def render_script_template(path, data)
       %Q{
 window.AngularRailsTemplates || (window.AngularRailsTemplates = angular.module(#{module_name}, []));
 

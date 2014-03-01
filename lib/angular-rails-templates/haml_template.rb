@@ -1,11 +1,13 @@
 module AngularRailsTemplates
-  class HamlTemplate < Template
+  class HamlTemplate < BaseTemplate
     def initialize_engine
       require_template_library 'haml'
     end
 
-    def prepare
-      @engine = Haml::Engine.new(data)
+    protected
+
+    def engine
+      @engine ||= Haml::Engine.new(data)
     end
   end
 end
