@@ -3,3 +3,5 @@ test/dummy/tmp/*
 test/dummy/log/*
 test/dummy/public/assets/*
 *.lock
+.DS_Store
+

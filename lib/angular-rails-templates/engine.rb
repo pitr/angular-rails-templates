@@ -8,8 +8,11 @@ module AngularRailsTemplates
       if app.config.assets
         require 'sprockets'
         Sprockets::Engines #force autoloading
-        Sprockets.register_engine '.ajs', AngularRailsTemplates::Template
-        Sprockets.register_engine '.html', AngularRailsTemplates::Template
+
+        Sprockets.register_engine '.ast',  AngularRailsTemplates::SlimTemplate
+        Sprockets.register_engine '.aht',  AngularRailsTemplates::HamlTemplate
+        Sprockets.register_engine '.ajs',  AngularRailsTemplates::GenericTemplate
+        Sprockets.register_engine '.html', AngularRailsTemplates::GenericTemplate
       end
     end
   end

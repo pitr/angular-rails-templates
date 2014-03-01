@@ -7,32 +7,37 @@ module AngularRailsTemplates
       'application/javascript'
     end
 
-    def prepare; end
-
     def evaluate(scope, locals, &block)
-      module_name           = configuration.module_name
       logical_template_path = logical_template_path(scope)
-
-      <<-EOS
-
-window.AngularRailsTemplates || (window.AngularRailsTemplates = angular.module(#{module_name.inspect}, []));
-
-window.AngularRailsTemplates.run(["$templateCache",function($templateCache) {
-  $templateCache.put(#{logical_template_path.inspect}, #{data.to_json});
-}]);
-      EOS
+      script_template(logical_template_path, @engine.render)
     end
 
-    private
+    protected
+
     def logical_template_path(scope)
       path = scope.logical_path
       path.gsub!(Regexp.new("^#{configuration.ignore_prefix}"), "")
-      ext = basename.split(".")[1]
-      "#{path}.#{ext}"
+      "#{path}.html"
+    end
+
+    def module_name
+      configuration.module_name.inspect
     end
 
     def configuration
       ::Rails.configuration.angular_templates
     end
+
+    def script_template(path, data)
+      %Q{
+window.AngularRailsTemplates || (window.AngularRailsTemplates = angular.module(#{module_name}, []));
+
+window.AngularRailsTemplates.run(["$templateCache",function($templateCache) {
+  $templateCache.put(#{path.inspect}, #{data.to_json});
+}]);
+      }
+    end
+
   end
 end
+
