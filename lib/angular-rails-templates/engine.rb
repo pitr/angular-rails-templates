@@ -9,10 +9,10 @@ module AngularRailsTemplates
         require 'sprockets'
         Sprockets::Engines #force autoloading
 
-        Sprockets.register_engine '.ngslim' , AngularRailsTemplates::Template
-        Sprockets.register_engine '.nghaml' , AngularRailsTemplates::Template
-        Sprockets.register_engine '.ajs'    , AngularRailsTemplates::Template
-        Sprockets.register_engine '.html'   , AngularRailsTemplates::Template
+        Sprockets.register_engine SLIM_EXT , AngularRailsTemplates::Template
+        Sprockets.register_engine HAML_EXT , AngularRailsTemplates::Template
+        Sprockets.register_engine '.ajs'   , AngularRailsTemplates::Template
+        Sprockets.register_engine '.html'  , AngularRailsTemplates::Template
       end
     end
   end
