@@ -2,5 +2,7 @@ source "https://rubygems.org"
 
 gem "rails", "4.0.1"
 gem 'sprockets-rails'
+gem 'slim'
+gem 'haml'
 
 gemspec :path=>".././"

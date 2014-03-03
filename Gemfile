@@ -5,4 +5,10 @@ gem 'sprockets'
 gem 'slim'
 gem 'haml'
 
-gemspec :path=>".././"
+gemspec
+
+group :test do
+  gem 'pry'
+  gem 'pry-debugger'
+end
+
