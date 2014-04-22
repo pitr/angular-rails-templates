@@ -19,9 +19,11 @@ gem 'angular-rails-templates'
 Then, in your `application.js` file, require your templates and the internal javascript file:
 
 ```javascript
-//= require angularjs
+//= require_tree ./angularjs
 //= require_tree ./path_to_your_templates
+//= require angular-rails-templates
 ```
+
 
 `path_to_your_templates` is relative to `application.js`.  For example, your templates are under `app/assets/javascripts/my_app/templates` and you then `require_tree ./my_app/templates`
 
