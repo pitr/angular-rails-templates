@@ -1,6 +1,6 @@
 // Angular Rails Templates
-// source: <%= source_path %>
+// source: <%= source_file %>
 
 angular.module("<%= angular_module %>").run(["$templateCache",function($templateCache) {
-  $templateCache.put("<%= name %>", <%= html.to_json %>)
+  $templateCache.put("<%= angular_template_name %>", <%= html.to_json %>)
 }]);

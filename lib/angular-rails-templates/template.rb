@@ -2,34 +2,45 @@ require 'sprockets'
 require 'sprockets/engines'
 
 module AngularRailsTemplates
-  class Template < Tilt::Template
-    JsTemplate = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+  class Template
+    AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
 
     def self.default_mime_type
       'application/javascript'
     end
 
-    def prepare ; end
-
-    def evaluate(scope, locals, &block)
-      template = case File.extname(file)
-               when HAML_EXT then HamlTemplate.new(self)
-               when SLIM_EXT then SlimTemplate.new(self)
-               else
-                 BaseTemplate.new(self)
-               end
-
-      JsTemplate.render Object.new,
-                        angular_module: configuration.module_name,
-                           source_path: file.gsub(/^#{Rails.root}\//,''),
-                                  name: logical_template_path(scope),
-                                  html: template.render
+    def initialize(file, &block)
+      @data = block.call
+      @file = file
+      @template =
+      case File.extname(file)
+        when HAML_EXT
+          Tilt::HamlTemplate.new file
+        when SLIM_EXT
+          Slim::Template.new file
+        else
+          Tilt.new file, &block
+      end
     end
 
-    protected
+    def render(context, locals = {})
+      AngularJsTemplateWrapper.render self, html: @template.render, angular_template_name: logical_template_path(context)
+    end
 
-    def logical_template_path(scope)
-      path = scope.logical_path.gsub /^#{configuration.ignore_prefix}/, ''
+    # methods availible to the js template
+
+    def angular_module
+      configuration.module_name
+    end
+
+    def source_file
+      @file.gsub(/^#{Rails.root}\//,'')
+    end
+
+    private
+
+    def logical_template_path(context)
+      path = context.logical_path.gsub /^#{configuration.ignore_prefix}/, ''
       "#{path}.html"
     end
 

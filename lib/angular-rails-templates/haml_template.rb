@@ -7,7 +7,7 @@ module AngularRailsTemplates
     protected
 
     def engine
-      @engine ||= Haml::Engine.new(data)
+      @engine ||= Haml::Engine.new data, ugly: true
     end
   end
 end
