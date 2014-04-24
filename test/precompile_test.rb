@@ -61,6 +61,11 @@ class PrecompileTest < TestCase
     assert_not_match '.put("ignored_namespace/', contents
     assert_match "Ignore Prefix: ignored_namespace/", contents
     assert_match /source: .+\/ignored_namespace\//, contents
+
+    # templates in app/assets/templates
+    assert_match "outside-javascript", contents
+    assert_match '.put("test.html",', contents
+    assert_match '.put("sub/sub.html",', contents
   end
 
   def app_path
