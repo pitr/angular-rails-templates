@@ -24,33 +24,41 @@ class PrecompileTest < TestCase
     assert appjs, "the file #{app_path}/public/assets/application.js should exist"
     contents = File.read(appjs)
 
+    # essential javascript things
     assert_match 'angular.module("templates", []);', contents
     assert_match 'angular.module("templates")', contents
-    assert_match /\.put\("template\.html",/, contents
-    assert_match /\.put\("subfolder\/template\.html",/, contents
-    assert_match /\.put\("subfolder2\/template\.html",/, contents
-    assert_match /\.put\("hello-world\.html",/, contents
-    assert_match /\.put\("erb_template\.html",/, contents
-    assert_match /\.put\("slim_template\.html",/, contents
-    assert_match /\.put\("haml_template\.html",/, contents
-    assert_match /\.put\("subfolder\/slim_template\.html",/, contents
-    assert_match /\.put\("subfolder\/haml_template\.html",/, contents
-    # assert_match "false", contents
 
+    # render .html
+    assert_match /\.put\("plain\.html",/, contents
+
+    # render .html.slim
+    assert_match /\.put\("slim_template\.html",/, contents
     # Check that we render slim templates
     # what the hell is this testing for?!?
     unescaped = contents.gsub(/\\u([\da-fA-F]{4})/) {|m| [$1].pack("H*").unpack("n*").pack("U*")}
     assert_match /<h1>I am ast template<\/h1>/, unescaped
     assert_match /<h1>I am ast template<\/h1>/, contents
 
-    # render .html.erb
+    # render .html.haml
+    assert_match /\.put\("haml_template\.html",/, contents
+
+    # subfolders
+    assert_match /\.put\("subfolder\/slim_template\.html",/, contents
+    assert_match /\.put\("subfolder\/haml_template\.html",/, contents
+    assert_match /\.put\("subfolder\/template\.html",/, contents
+    assert_match /\.put\("subfolder2\/template\.html",/, contents
+
+    # render .html.erb with ruby expression
+    assert_match /\.put\("erb_template\.html",/, contents
     assert_match '<div class=\"hello-world\">42</div>', contents
 
     # render .html.md
+    assert_match '.put("markdown.html",', contents
     assert_match "<h3>Markdown</h3>", contents
 
+    # ignore_prefix
+    assert_match /\.put\("hello-world\.html",/, contents
     assert_not_match '.put("ignored_namespace/', contents
-
     assert_match "Ignore Prefix: ignored_namespace/", contents
     assert_match /source: .+\/ignored_namespace\//, contents
   end
