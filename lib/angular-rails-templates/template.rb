@@ -10,21 +10,14 @@ module AngularRailsTemplates
     end
 
     def initialize(file, &block)
-      @data = block.call
       @file = file
-      @template =
-      case File.extname(file)
-        when HAML_EXT
-          Tilt::HamlTemplate.new file
-        when SLIM_EXT
-          Slim::Template.new file
-        else
-          Tilt.new file, &block
-      end
+      @template = Tilt.new file, &block
     end
 
     def render(context, locals = {})
-      AngularJsTemplateWrapper.render self, html: @template.render, angular_template_name: logical_template_path(context)
+      locals[:html] = @template.render
+      locals[:angular_template_name] = logical_template_path(context)
+      AngularJsTemplateWrapper.render(self, locals)
     end
 
     # methods availible to the js template
