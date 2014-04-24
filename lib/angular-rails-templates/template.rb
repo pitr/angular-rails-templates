@@ -2,35 +2,31 @@ require 'sprockets'
 require 'sprockets/engines'
 
 module AngularRailsTemplates
-  class Template
+  class Template < ::Tilt::Template
     AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
 
     def self.default_mime_type
       'application/javascript'
     end
 
-    def initialize(file, &block)
-      @template = Tilt.new file, &block
+    def prepare
+      @template = Tilt.new(file) { data }
+      @file = file[/(.+\.html)/]
     end
 
-    # Sprockets needs this to find assets in development
-    def context
-      @template.context
-    end
-
-    def render(context, locals = {})
+    def evaluate(scope, locals, &block)
       locals[:html] = @template.render
-      locals[:angular_template_name] = logical_template_path(context)
-      locals[:source_file] = "#{context.pathname}".gsub(/^#{Rails.root}\//,'')
+      locals[:angular_template_name] = logical_template_path(scope)
+      locals[:source_file] = "#{scope.pathname}".gsub(/^#{Rails.root}\//,'')
       locals[:angular_module] = configuration.module_name
-      # locals[:context] = context
+
       AngularJsTemplateWrapper.render(nil, locals)
     end
 
     protected
 
-    def logical_template_path(context)
-      path = context.logical_path.gsub /^#{configuration.ignore_prefix}/, ''
+    def logical_template_path(scope)
+      path = scope.logical_path.gsub /^#{configuration.ignore_prefix}/, ''
       "#{path}.html"
     end
 
