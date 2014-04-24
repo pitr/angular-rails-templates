@@ -10,24 +10,16 @@ module AngularRailsTemplates
     end
 
     def initialize(file, &block)
-      @file = file
       @template = Tilt.new file, &block
     end
 
     def render(context, locals = {})
       locals[:html] = @template.render
       locals[:angular_template_name] = logical_template_path(context)
-      AngularJsTemplateWrapper.render(self, locals)
-    end
-
-    # methods availible to the js template
-
-    def angular_module
-      configuration.module_name
-    end
-
-    def source_file
-      @file.gsub(/^#{Rails.root}\//,'')
+      locals[:source_file] = "#{context.pathname}".gsub(/^#{Rails.root}\//,'')
+      locals[:angular_module] = configuration.module_name
+      # locals[:context] = context
+      AngularJsTemplateWrapper.render(nil, locals)
     end
 
     private

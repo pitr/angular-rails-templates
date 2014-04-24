@@ -1,6 +1,7 @@
-// Angular Rails Templates
+// Angular Rails Template
 // source: <%= source_file %>
 
 angular.module("<%= angular_module %>").run(["$templateCache",function($templateCache) {
   $templateCache.put("<%= angular_template_name %>", <%= html.to_json %>)
 }]);
+

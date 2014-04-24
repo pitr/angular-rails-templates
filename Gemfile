@@ -4,6 +4,7 @@ gem "rails", "3.2.15"
 gem 'sprockets'
 gem 'slim'
 gem 'haml'
+gem 'redcarpet'
 
 gemspec
 
