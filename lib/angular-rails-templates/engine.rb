@@ -22,8 +22,16 @@ module AngularRailsTemplates
 
         # These engines render markup as HTML
         config.angular_templates.markups.each do |ext|
-          Sprockets.register_engine ".#{ext}", Tilt[ext]
-          # puts ".#{ext} #{Tilt[ext]}"
+          # Processed haml/slim templates have a mime-type of text/html.
+          # If sprockets sees a `foo.html.haml` it will process the haml
+          # and stop, because the haml output is html. Our html engine won't get run.
+          mimeless_engine = Class.new(Tilt[ext]) do
+            def self.default_mime_type
+              nil
+            end
+          end
+
+          Sprockets.register_engine ".#{ext}", mimeless_engine
         end
 
         # This engine wraps the HTML into JS
