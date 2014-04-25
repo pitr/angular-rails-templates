@@ -59,26 +59,30 @@ class PrecompileTest < TestCase
     # ignore_prefix
     assert_match /\.put\("hello-world\.html",/, contents
     assert_not_match '.put("ignored_namespace/', contents
-    assert_match "Ignore Prefix: ignored_namespace/", contents
-    assert_match /source: .+\/ignored_namespace\//, contents
 
     # templates in app/assets/templates
     assert_match "outside-javascript", contents
     assert_match '.put("test.html",', contents
     assert_match '.put("sub/sub.html",', contents
+
+    contents
   end
 
   def app_path
     Pathname.new("#{File.dirname(__FILE__)}/dummy")
   end
 
-  # def test_precompile_succeeds_in_development_environment
-  #   precompile! 'development'
-  # end
+  def test_precompile_succeeds_in_development_environment
+    contents = precompile! 'development'
 
-  def test_precompile_succeeds_in_production_environment
-    precompile! 'production'
+    assert_match "angular_templates.ignore_prefix: ignored_namespace/", contents
+    assert_match "angular_templates.markups:", contents
+    assert_match /source: .+\/ignored_namespace\//, contents
   end
+
+  # def test_precompile_succeeds_in_production_environment
+  #   precompile! 'production'
+  # end
 
   # def test_precompile_succeeds_in_test_environment
   #   precompile! 'test'
