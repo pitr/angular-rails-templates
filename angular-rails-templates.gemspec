@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "railties", ">= 3.1"
   s.add_dependency "sprockets"
 
-  s.add_development_dependency "minitest", "~> 5.3.3"
-  s.add_development_dependency "capybara", "~> 2.2.1"
+  s.add_development_dependency "minitest"
+  s.add_development_dependency "capybara"
+  s.add_development_dependency "uglifier"
 end

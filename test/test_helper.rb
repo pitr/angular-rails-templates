@@ -11,6 +11,9 @@ require 'active_support/core_ext/kernel/reporting'
 
 Rails.backtrace_cleaner.remove_silencers!
 
+# Support MiniTest 4/5
+Minitest::Test = MiniTest::Unit::TestCase unless defined? Minitest::Test
+
 class IntegrationTest < MiniTest::Spec
   include Capybara::DSL
   register_spec_type(/integration$/, self)
