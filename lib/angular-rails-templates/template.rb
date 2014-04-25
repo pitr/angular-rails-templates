@@ -10,22 +10,19 @@ module AngularRailsTemplates
     end
 
     def prepare
-      # @template = Tilt.new(file) { data }
-      # @file = file[/(.+\.html)/]
+      # this method is mandatory on Tilt::Template subclasses
     end
 
     def evaluate(scope, locals, &block)
-      # locals[:html] = @template.render
       locals[:html] = data
       locals[:angular_template_name] = logical_template_path(scope)
       locals[:source_file] = "#{scope.pathname}".gsub(/^#{Rails.root}\//,'')
       locals[:angular_module] = configuration.module_name
-      locals[:metadata] = scope
 
       AngularJsTemplateWrapper.render(scope, locals)
     end
 
-    protected
+    private
 
     def logical_template_path(scope)
       path = scope.logical_path.gsub /^#{configuration.ignore_prefix}/, ''
