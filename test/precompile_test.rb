@@ -49,7 +49,6 @@ class PrecompileTest < Minitest::Test
 
     # render .html.erb with ruby expression
     assert_match /\.put\("erb_template\.html",/, contents
-    assert_match '<div class=\"hello-world\">42</div>', contents
 
     # render .html.md
     assert_match '.put("markdown.html",', contents
