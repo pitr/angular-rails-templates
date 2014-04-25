@@ -5,6 +5,27 @@ require 'test_helper'
 describe "user assets integration" do
   let(:config) { Dummy::Application.config.angular_templates }
 
+  describe "any rendered template" do
+
+    before { visit '/assets/plain.js' }
+
+    it "has a comment with the gem name" do
+      page.source.must_match   %r{// Angular Rails Template}
+    end
+
+    it "has a comment with the source file" do
+      page.source.must_include %Q{// source:}
+    end
+
+    it "opens an existing angular module" do
+      page.source.must_include %Q{angular.module("#{config.module_name}")}
+    end
+
+    it "puts something in the templateCache" do
+      page.source.must_include %Q{$templateCache.put}
+    end
+  end
+
   describe "templates in assets/javascript" do
 
     it "compiles erb (erb_template.html.erb)" do

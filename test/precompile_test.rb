@@ -31,36 +31,14 @@ class PrecompileTest < Minitest::Test
     assert_match /angular\.module\("templates", ?\[\]\)[,;]/, contents
     assert_match 'angular.module("templates")', contents
 
-    # render .html
-    assert_match /\.put\("plain\.html",/, contents
+    # Test the inclusion of the templates
+    %w(erb_template haml_template hello-world markdown plain slim_template sub/sub sub/sub2 subfolder/haml_template subfolder/slim_template subfolder/template subfolder2/template test).
+    each do |file|
+      assert_match %Q{.put("#{file}.html"}, contents
+    end
 
-    # render .html.slim
-    assert_match /\.put\("slim_template\.html",/, contents
-    assert_match /<h1>slim template<\/h1>/, contents
-
-    # render .html.haml
-    assert_match /\.put\("haml_template\.html",/, contents
-
-    # subfolders
-    assert_match /\.put\("subfolder\/slim_template\.html",/, contents
-    assert_match /\.put\("subfolder\/haml_template\.html",/, contents
-    assert_match /\.put\("subfolder\/template\.html",/, contents
-    assert_match /\.put\("subfolder2\/template\.html",/, contents
-
-    # render .html.erb with ruby expression
-    assert_match /\.put\("erb_template\.html",/, contents
-
-    # render .html.md
-    assert_match '.put("markdown.html",', contents
-
-    # ignore_prefix
-    assert_match /\.put\("hello-world\.html",/, contents
+    # no templates starting with the ignored namespace are in the bundle
     refute_match '.put("ignored_namespace/', contents
-
-    # templates in app/assets/templates
-    assert_match "outside-javascript", contents
-    assert_match '.put("test.html",', contents
-    assert_match '.put("sub/sub.html",', contents
 
     contents
   end
