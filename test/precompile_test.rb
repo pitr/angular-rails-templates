@@ -1,6 +1,9 @@
 require 'test_helper'
 
-class PrecompileTest < TestCase
+require 'fileutils'
+require 'pathname'
+
+class PrecompileTest < Minitest::Test
   def setup
     delete_assets!
   end
@@ -15,9 +18,9 @@ class PrecompileTest < TestCase
   end
 
   def precompile!(rails_env)
-    # quietly do
+    quietly do
       Dir.chdir(app_path) { `RAILS_ENV=#{rails_env} bundle exec rake assets:precompile` }
-    # end
+    end
 
     appjs = Dir["#{app_path}/public/assets/application*.js"].first
 
@@ -25,7 +28,7 @@ class PrecompileTest < TestCase
     contents = File.read(appjs)
 
     # essential javascript things
-    assert_match 'angular.module("templates", []);', contents
+    assert_match /angular\.module\("templates", ?\[\]\)[,;]/, contents
     assert_match 'angular.module("templates")', contents
 
     # render .html
@@ -33,11 +36,7 @@ class PrecompileTest < TestCase
 
     # render .html.slim
     assert_match /\.put\("slim_template\.html",/, contents
-    # Check that we render slim templates
-    # what the hell is this testing for?!?
-    unescaped = contents.gsub(/\\u([\da-fA-F]{4})/) {|m| [$1].pack("H*").unpack("n*").pack("U*")}
-    assert_match /<h1>I am ast template<\/h1>/, unescaped
-    assert_match /<h1>I am ast template<\/h1>/, contents
+    assert_match /<h1>slim template<\/h1>/, contents
 
     # render .html.haml
     assert_match /\.put\("haml_template\.html",/, contents
@@ -54,11 +53,11 @@ class PrecompileTest < TestCase
 
     # render .html.md
     assert_match '.put("markdown.html",', contents
-    assert_match "<h3>Markdown</h3>", contents
+    assert_match "<h3>Markdown!</h3>", contents
 
     # ignore_prefix
     assert_match /\.put\("hello-world\.html",/, contents
-    assert_not_match '.put("ignored_namespace/', contents
+    refute_match '.put("ignored_namespace/', contents
 
     # templates in app/assets/templates
     assert_match "outside-javascript", contents
@@ -80,11 +79,8 @@ class PrecompileTest < TestCase
     assert_match /source: .+\/ignored_namespace\//, contents
   end
 
-  # def test_precompile_succeeds_in_production_environment
-  #   precompile! 'production'
-  # end
+  def test_precompile_succeeds_in_production_environment
+    precompile! 'production'
+  end
 
-  # def test_precompile_succeeds_in_test_environment
-  #   precompile! 'test'
-  # end
 end
