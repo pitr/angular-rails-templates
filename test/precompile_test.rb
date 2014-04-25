@@ -26,7 +26,7 @@ class PrecompileTest < TestCase
     assert appjs, "the file #{app_path}/public/assets/application.js should exist"
     contents = File.read(appjs)
 
-    assert_match 'angular.module("templates", []);', contents
+    assert_match /angular\.module\("templates", ?\[\]\)/, contents
     assert_match 'angular.module("templates")', contents
     assert_match /\.put\("template\.html",/, contents
     assert_match /\.put\("subfolder\/template\.html",/, contents
@@ -43,8 +43,8 @@ class PrecompileTest < TestCase
 
     assert_not_match '.put("ignored_namespace/', contents
 
-    assert_match "Ignore Prefix: ignored_namespace/", contents
-    assert_match /source: .+\/ignored_namespace\//, contents
+    # return contents for more assertions
+    contents
   end
 
   def app_path
@@ -52,7 +52,10 @@ class PrecompileTest < TestCase
   end
 
   def test_precompile_succeeds_in_development_environment
-    precompile! nil
+    contents = precompile! nil
+
+    assert_match "Ignore Prefix: ignored_namespace/", contents
+    assert_match /source: .+\/ignored_namespace\//, contents
   end
 
   def test_precompile_succeeds_in_production_environment
