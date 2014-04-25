@@ -14,7 +14,8 @@ module AngularRailsTemplates
     end
 
     def evaluate(scope, locals, &block)
-      locals[:html] = data.chomp
+      # to_json has quirky behavior in different versions of Rails
+      locals[:html] = JSON.generate(data.chomp, quirks_mode: true)
       locals[:angular_template_name] = logical_template_path(scope)
       locals[:source_file] = "#{scope.pathname}".gsub(/^#{Rails.root}\//,'')
       locals[:angular_module] = configuration.module_name
