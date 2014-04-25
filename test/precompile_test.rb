@@ -52,7 +52,6 @@ class PrecompileTest < Minitest::Test
 
     # render .html.md
     assert_match '.put("markdown.html",', contents
-    assert_match "<h3>Markdown!</h3>", contents
 
     # ignore_prefix
     assert_match /\.put\("hello-world\.html",/, contents

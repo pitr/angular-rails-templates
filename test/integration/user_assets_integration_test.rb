@@ -27,7 +27,7 @@ describe "user assets integration" do
       visit '/assets/markdown.js'
       page.source.must_include %Q{// source: app/assets/javascripts/markdown.html.md}
       page.source.must_include %Q{$templateCache.put("markdown.html"}
-      page.source.must_include %q{"<h3>Markdown!</h3>"}
+      page.source.must_match   %r{"<h3.+>Markdown!</h3>"}
     end
 
     it "compiles plain html (plain.html)" do
