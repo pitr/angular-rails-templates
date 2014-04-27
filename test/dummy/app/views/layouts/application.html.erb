@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dummy</title>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+<title>Dummy</title>
+<%= javascript_include_tag "/angular.min.js" %>
+<%= javascript_include_tag "application" %>
+<script>
+function DemoController($scope,$templateCache){
+  $scope.info = $templateCache.info();
+  $scope.version = angular.version;
+}
+</script>
 </head>
-<body>
-
-<%= yield %>
-
+<body ng-app="templates" ng-controller="DemoController">
+  <h1>Angular</h1>
+  {{version}}
+  <h1>Template Cache</h1>
+  {{info}}
 </body>
 </html>
