@@ -1,9 +1,10 @@
 module AngularRailsTemplates
   class Engine < ::Rails::Engine
     config.angular_templates = ActiveSupport::OrderedOptions.new
-    config.angular_templates.module_name   = 'templates'
-    config.angular_templates.ignore_prefix = 'templates/'
-    config.angular_templates.markups       = []
+    config.angular_templates.module_name    = 'templates'
+    config.angular_templates.ignore_prefix  = 'templates/'
+    config.angular_templates.markups        = []
+    config.angular_templates.htmlcompressor = false
 
     # try loading common markups
     %w(erb haml liquid md radius slim str textile wiki).
@@ -20,6 +21,10 @@ module AngularRailsTemplates
       if app.config.assets
         require 'sprockets'
         require 'sprockets/engines' # load sprockets for Rails 3
+
+        if app.config.angular_templates.htmlcompressor
+          require 'htmlcompressor/compressor'
+        end
 
         # These engines render markup as HTML
         app.config.angular_templates.markups.each do |ext|
