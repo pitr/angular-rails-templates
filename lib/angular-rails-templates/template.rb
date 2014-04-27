@@ -1,5 +1,4 @@
-require 'sprockets'
-require 'sprockets/engines'
+require 'json'
 
 module AngularRailsTemplates
   class Template < ::Tilt::Template

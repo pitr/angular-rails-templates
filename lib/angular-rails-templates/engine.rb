@@ -19,10 +19,10 @@ module AngularRailsTemplates
     config.before_initialize do |app|
       if app.config.assets
         require 'sprockets'
-        Sprockets::Engines #force autoloading
+        require 'sprockets/engines' # load sprockets for Rails 3
 
         # These engines render markup as HTML
-        config.angular_templates.markups.each do |ext|
+        app.config.angular_templates.markups.each do |ext|
           # Processed haml/slim templates have a mime-type of text/html.
           # If sprockets sees a `foo.html.haml` it will process the haml
           # and stop, because the haml output is html. Our html engine won't get run.
