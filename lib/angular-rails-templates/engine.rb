@@ -6,7 +6,7 @@ module AngularRailsTemplates
     config.angular_templates.markups       = []
 
     # try loading common markups
-    %w(erb str haml slim md liquid radius textile wiki).
+    %w(erb haml liquid md radius slim str textile wiki).
     each do |ext|
       begin
         config.angular_templates.markups << ext if Tilt[ext]
