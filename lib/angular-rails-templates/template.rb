@@ -39,11 +39,7 @@ module AngularRailsTemplates
 
     def compress html
       unless @@compressor
-        @@compressor = if configuration.htmlcompressor.is_a? Hash
-          HtmlCompressor::Compressor.new(configuration.htmlcompressor)
-        else
-          HtmlCompressor::Compressor.new
-        end
+        @@compressor = HtmlCompressor::Compressor.new configuration.htmlcompressor
       end
       @@compressor.compress(html)
     end

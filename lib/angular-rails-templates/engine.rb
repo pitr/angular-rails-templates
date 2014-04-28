@@ -24,6 +24,9 @@ module AngularRailsTemplates
 
         if app.config.angular_templates.htmlcompressor
           require 'htmlcompressor/compressor'
+          unless app.config.angular_templates.htmlcompressor.is_a? Hash
+            app.config.angular_templates.htmlcompressor = {remove_intertag_spaces: true}
+          end
         end
 
         # These engines render markup as HTML
