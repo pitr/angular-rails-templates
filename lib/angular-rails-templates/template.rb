@@ -1,7 +1,8 @@
-require 'json'
+require 'angular-rails-templates/compact_javascript_escape'
 
 module AngularRailsTemplates
   class Template < ::Tilt::Template
+    include CompactJavaScriptEscape
     AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
     @@compressor = nil
 
@@ -14,13 +15,10 @@ module AngularRailsTemplates
       if configuration.htmlcompressor
         @data = compress data
       end
-
-      # to_json has quirky behavior in different versions of Rails
-      @html_json = JSON.generate(data.chomp, quirks_mode: true)
     end
 
     def evaluate(scope, locals, &block)
-      locals[:html] = @html_json
+      locals[:html] = escape_javascript data.chomp
       locals[:angular_template_name] = logical_template_path(scope)
       locals[:source_file] = "#{scope.pathname}".sub(/^#{Rails.root}\//,'')
       locals[:angular_module] = configuration.module_name
