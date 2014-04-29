@@ -1,35 +1,35 @@
-require 'sprockets'
-require 'sprockets/engines'
+require 'angular-rails-templates/compact_javascript_escape'
 
 module AngularRailsTemplates
-  class Template < Tilt::Template
-    JsTemplate = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+  class Template < ::Tilt::Template
+    include CompactJavaScriptEscape
+    AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+    @@compressor = nil
 
     def self.default_mime_type
       'application/javascript'
     end
 
-    def prepare ; end
-
-    def evaluate(scope, locals, &block)
-      template = case File.extname(file)
-               when HAML_EXT then HamlTemplate.new(self)
-               when SLIM_EXT then SlimTemplate.new(self)
-               else
-                 BaseTemplate.new(self)
-               end
-
-      JsTemplate.render Object.new,
-                        angular_module: configuration.module_name,
-                           source_path: file.gsub(/^#{Rails.root}\//,''),
-                                  name: logical_template_path(scope),
-                                  html: template.render
+    # this method is mandatory on Tilt::Template subclasses
+    def prepare
+      if configuration.htmlcompressor
+        @data = compress data
+      end
     end
 
-    protected
+    def evaluate(scope, locals, &block)
+      locals[:html] = escape_javascript data.chomp
+      locals[:angular_template_name] = logical_template_path(scope)
+      locals[:source_file] = "#{scope.pathname}".sub(/^#{Rails.root}\//,'')
+      locals[:angular_module] = configuration.module_name
+
+      AngularJsTemplateWrapper.render(scope, locals)
+    end
+
+    private
 
     def logical_template_path(scope)
-      path = scope.logical_path.gsub /^#{configuration.ignore_prefix}/, ''
+      path = scope.logical_path.sub /^#{configuration.ignore_prefix}/, ''
       "#{path}.html"
     end
 
@@ -37,6 +37,12 @@ module AngularRailsTemplates
       ::Rails.configuration.angular_templates
     end
 
+    def compress html
+      unless @@compressor
+        @@compressor = HtmlCompressor::Compressor.new configuration.htmlcompressor
+      end
+      @@compressor.compress(html)
+    end
   end
 end
 
