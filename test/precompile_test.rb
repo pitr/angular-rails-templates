@@ -23,11 +23,11 @@ class PrecompileTest < TestCase
 
     appjs = Dir["#{app_path}/public/assets/application*.js"].first
 
-    assert !appjs.nil?, "the file #{app_path}/public/assets/application.js should exist"
+    assert appjs, "the file #{app_path}/public/assets/application.js should exist"
     contents = File.read(appjs)
 
-    assert_match /window\.AngularRailsTemplates/, contents
-    assert_match /angular\.module/, contents
+    assert_match /angular\.module\("templates", ?\[\]\)/, contents
+    assert_match 'angular.module("templates")', contents
     assert_match /\.put\("template\.html",/, contents
     assert_match /\.put\("subfolder\/template\.html",/, contents
     assert_match /\.put\("hello-world\.html",/, contents
@@ -41,7 +41,10 @@ class PrecompileTest < TestCase
     unescaped = contents.gsub(/\\u([\da-fA-F]{4})/) {|m| [$1].pack("H*").unpack("n*").pack("U*")}
     assert_match /<h1>I am ast template<\/h1>/, unescaped
 
-    assert_not_match /ignored_namespace/, contents
+    assert_not_match '.put("ignored_namespace/', contents
+
+    # return contents for more assertions
+    contents
   end
 
   def app_path
@@ -49,7 +52,10 @@ class PrecompileTest < TestCase
   end
 
   def test_precompile_succeeds_in_development_environment
-    precompile! nil
+    contents = precompile! nil
+
+    assert_match "Ignore Prefix: ignored_namespace/", contents
+    assert_match /source: .+\/ignored_namespace\//, contents
   end
 
   def test_precompile_succeeds_in_production_environment
