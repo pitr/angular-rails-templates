@@ -32,7 +32,7 @@ describe "user assets integration" do
       visit '/assets/erb_template.js'
       page.source.must_include %Q{// source: app/assets/javascripts/erb_template.html.erb}
       page.source.must_include %Q{$templateCache.put("erb_template.html"}
-      page.source.must_include %q{"<div class=\"hello-world\">42</div>"}
+      page.source.must_include %q{'<div class="hello-world">42</div>'}
     end
 
     # assuming the user loads haml
@@ -48,14 +48,14 @@ describe "user assets integration" do
       visit '/assets/markdown.js'
       page.source.must_include %Q{// source: app/assets/javascripts/markdown.html.md}
       page.source.must_include %Q{$templateCache.put("markdown.html"}
-      page.source.must_match   %r{"<h3.+>Markdown!</h3>"}
+      page.source.must_match   %r{<h3.+>Markdown!</h3>}
     end
 
     it "compiles plain html (plain.html)" do
       visit '/assets/plain.js'
       page.source.must_include %Q{// source: app/assets/javascripts/plain.html}
       page.source.must_include %Q{$templateCache.put("plain.html"}
-      page.source.must_include %q{"<div class=\"hello-world\">plain text</div>"}
+      page.source.must_include %q{'<div class="hello-world">plain text</div>'}
     end
 
     # assuming the user loads slim
@@ -87,14 +87,14 @@ describe "user assets integration" do
       visit '/assets/subfolder/template.js'
       page.source.must_include %Q{// source: app/assets/javascripts/subfolder/template.html}
       page.source.must_include %Q{$templateCache.put("subfolder/template.html"}
-      page.source.must_include %q{"<div class=\"hello-world\">Subfolder</div>"}
+      page.source.must_include %q{'<div class="hello-world">Subfolder</div>'}
     end
 
     it "compiles slim in a subfolder (slim_template.html.slim)" do
       visit '/assets/subfolder/slim_template.js'
       page.source.must_include %Q{// source: app/assets/javascripts/subfolder/slim_template.html.slim}
       page.source.must_include %Q{$templateCache.put("subfolder/slim_template.html"}
-      page.source.must_include %q{"<div class=\"hello-world\">Subfolder-SLIM</div>"}
+      page.source.must_include %q{'<div class="hello-world">Subfolder-SLIM</div>'}
     end
 
     it "compiles haml in a subfolder (haml_template.html.haml)" do
@@ -111,7 +111,7 @@ describe "user assets integration" do
       visit '/assets/subfolder2/template.js'
       page.source.must_include %Q{// source: app/assets/javascripts/subfolder2/template.html}
       page.source.must_include %Q{$templateCache.put("subfolder2/template.html"}
-      page.source.must_include %q{"<div class=\"hello-world\">Subfolder2</div>"}
+      page.source.must_include %q{'<div class="hello-world">Subfolder2</div>'}
     end
   end
 
