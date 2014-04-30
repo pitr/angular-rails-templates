@@ -11,7 +11,7 @@ It removes the need for AJAX calls to retrieve the templates (or for you to manu
 In Gemfile
 
 ```ruby
-gem 'angular-rails-templates', github: 'whitehat101/angular-rails-templates'
+gem 'angular-rails-templates'
 ```
 
 ### 2. Include Templates in Rails Asset Pipeline
