@@ -13,6 +13,8 @@ module AngularRailsTemplates
         Sprockets.register_engine HAML_EXT , AngularRailsTemplates::Template
         Sprockets.register_engine '.ajs'   , AngularRailsTemplates::Template
         Sprockets.register_engine '.html'  , AngularRailsTemplates::Template
+
+        app.config.assets.precompile << %r(angular-rails-templates.js)
       end
     end
   end
