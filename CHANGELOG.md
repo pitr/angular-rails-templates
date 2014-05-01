@@ -2,6 +2,11 @@
 
 ### Future
 
+### 0.1.1
+
+- Add vendor folder to gemspec [whitehat101, #41]
+- Add Tilt as dependency [pitr, #43]
+
 ### 0.1.0
 
 - **BREAKING** Bring back a separate JS file for module declaration [whitehat101, #35]
