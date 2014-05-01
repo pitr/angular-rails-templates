@@ -12,7 +12,7 @@ module AngularRailsTemplates
       begin
         config.angular_templates.markups << ext if Tilt[ext]
       rescue LoadError
-        # They don't have the required libray required. Oh well.
+        # They don't have the required library required. Oh well.
       end
     end
 
