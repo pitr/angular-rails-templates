@@ -45,8 +45,6 @@ module AngularRailsTemplates
 
         # This engine wraps the HTML into JS
         Sprockets.register_engine '.html', AngularRailsTemplates::Template
-
-        app.config.assets.precompile << %r(angular-rails-templates.js)
       end
     end
   end
