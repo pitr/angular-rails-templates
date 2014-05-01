@@ -12,7 +12,7 @@ module AngularRailsTemplates
       begin
         config.angular_templates.markups << ext if Tilt[ext]
       rescue LoadError
-        # They don't have the required libray required. Oh well.
+        # They don't have the required library required. Oh well.
       end
     end
 
@@ -45,8 +45,6 @@ module AngularRailsTemplates
 
         # This engine wraps the HTML into JS
         Sprockets.register_engine '.html', AngularRailsTemplates::Template
-
-        app.config.assets.precompile << %r(angular-rails-templates.js)
       end
     end
   end

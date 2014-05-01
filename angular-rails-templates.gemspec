@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/pitr/angular-rails-templates"
   s.summary     = "Use your angular templates with rails' asset pipeline"
 
-  s.files = %w(README.md LICENSE) + Dir["lib/**/*", "app/**/*"]
+  s.files = %w(README.md LICENSE) + Dir["lib/**/*", "vendor/**/*"]
   s.license = 'MIT'
 
   s.require_paths = ["lib"]
