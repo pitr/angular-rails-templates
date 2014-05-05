@@ -12,7 +12,9 @@ module AngularRailsTemplates
     %w(erb haml liquid md radius slim str textile wiki).
     each do |ext|
       begin
-        config.angular_templates.markups << ext if Tilt[ext]
+        silence_warnings do
+          config.angular_templates.markups << ext if Tilt[ext]
+        end
       rescue LoadError
         # They don't have the required library required. Oh well.
       end
