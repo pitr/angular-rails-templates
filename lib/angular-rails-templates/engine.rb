@@ -50,6 +50,14 @@ module AngularRailsTemplates
         # This engine wraps the HTML into JS
         Sprockets.register_engine '.html', AngularRailsTemplates::Template
       end
+
+      # Sprockets Cache Busting
+      # If ART's version or settings change, expire and recompile all assets
+      app.config.assets.version = [
+        app.config.assets.version,
+        'ART',
+        Digest::MD5.hexdigest("#{VERSION}-#{app.config.angular_templates}")
+      ].join '-'
     end
   end
 end
