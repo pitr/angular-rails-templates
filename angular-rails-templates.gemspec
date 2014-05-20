@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "angular-rails-templates"
   s.version     = AngularRailsTemplates::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Damien Mathieu", 'pitr']
+  s.authors     = ["Damien Mathieu", 'pitr', 'whitehat101']
   s.email       = ["pitr.vern@gmail.com"]
   s.homepage    = "https://github.com/pitr/angular-rails-templates"
   s.summary     = "Use your angular templates with rails' asset pipeline"

@@ -2,6 +2,10 @@
 
 ### Future
 
+### 0.1.2
+
+- Automatic Sprockets Cache busting (+ tilt warning silence) [whitehat101, #48]
+
 ### 0.1.1
 
 - Add vendor folder to gemspec [whitehat101, #41]
