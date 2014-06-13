@@ -4,7 +4,7 @@ module AngularRailsTemplates
   class Engine < ::Rails::Engine
     config.angular_templates = ActiveSupport::OrderedOptions.new
     config.angular_templates.module_name    = 'templates'
-    config.angular_templates.ignore_prefix  = 'templates/'
+    config.angular_templates.ignore_prefix  = ['templates/']
     config.angular_templates.markups        = []
     config.angular_templates.htmlcompressor = false
 
