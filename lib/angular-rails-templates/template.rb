@@ -30,7 +30,7 @@ module AngularRailsTemplates
 
     def logical_template_path(scope)
       if configuration.ignore_prefix.is_a? String then configuration.ignore_prefix = [configuration.ignore_prefix] end
-      path = scope.logical_path.sub(/^#{configuration.ignore_prefix.join('|')}/, '')
+      path = scope.logical_path.sub(/^(#{configuration.ignore_prefix.join('|')})/, '')
       "#{path}.html"
     end
 
