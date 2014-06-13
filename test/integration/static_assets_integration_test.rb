@@ -17,7 +17,7 @@ describe "angular-rails-templates.js integration" do
 
   it "includes a comment describing the ignore_prefix" do
     visit '/assets/angular-rails-templates.js'
-    page.source.must_include %Q{// angular_templates.ignore_prefix: #{config.ignore_prefix}}
+    page.source.must_include %Q{// angular_templates.ignore_prefix: [#{config.ignore_prefix}]}
   end
 
   it "includes a comment describing the availible markups" do
