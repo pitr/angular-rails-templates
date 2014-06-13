@@ -28,6 +28,6 @@ module Dummy
     config.assets.enabled = true
     config.assets.version = "#{Time.now}" # always expire cached assets on Rails Boot
 
-    config.angular_templates.ignore_prefix = ['ignored_namespace/']
+    config.angular_templates.ignore_prefix = 'ignored_namespace/'
   end
 end
