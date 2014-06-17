@@ -59,5 +59,13 @@ module AngularRailsTemplates
         Digest::MD5.hexdigest("#{VERSION}-#{app.config.angular_templates}")
       ].join '-'
     end
+
+
+    config.after_initialize do |app|
+      # Ensure ignore_prefix can be passed as a String or Array
+      if app.config.angular_templates.ignore_prefix.is_a? String
+        app.config.angular_templates.ignore_prefix = Array(app.config.angular_templates.ignore_prefix)
+      end
+    end
   end
 end
