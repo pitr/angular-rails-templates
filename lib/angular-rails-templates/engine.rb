@@ -21,7 +21,7 @@ module AngularRailsTemplates
     end
 
 
-    config.before_initialize do |app|
+    initializer 'angular-rails-templates' do |app|
       if app.config.assets
         require 'sprockets'
         require 'sprockets/engines' # load sprockets for Rails 3
@@ -44,11 +44,11 @@ module AngularRailsTemplates
             end
           end
 
-          Sprockets.register_engine ".#{ext}", mimeless_engine
+          app.assets.register_engine ".#{ext}", mimeless_engine
         end
 
         # This engine wraps the HTML into JS
-        Sprockets.register_engine '.html', AngularRailsTemplates::Template
+        app.assets.register_engine '.html', AngularRailsTemplates::Template
       end
 
       # Sprockets Cache Busting
