@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "rails", "~> 3.2.15"
-gem "slim"
+gem "slim-rails"
 gem "haml"
 gem "kramdown"
 
