@@ -59,7 +59,7 @@ describe "user assets integration" do
     end
 
     # assuming the user loads slim
-    it "compiles haml (slim_template.html.slim)" do
+    it "compiles slim (slim_template.html.slim)" do
       visit '/assets/slim_template.js'
       page.source.must_include %Q{// source: app/assets/javascripts/slim_template.html.slim}
       page.source.must_include %Q{$templateCache.put("slim_template.html"}
