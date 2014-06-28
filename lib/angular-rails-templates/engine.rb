@@ -8,15 +8,17 @@ module AngularRailsTemplates
     config.angular_templates.markups        = []
     config.angular_templates.htmlcompressor = false
 
-    # try loading common markups
-    %w(erb haml liquid md radius slim str textile wiki).
-    each do |ext|
-      begin
-        silence_warnings do
-          config.angular_templates.markups << ext if Tilt[ext]
+    config.before_configuration do |app|
+      # try loading common markups
+      %w(erb haml liquid md radius slim str textile wiki).
+      each do |ext|
+        begin
+          silence_warnings do
+            config.angular_templates.markups << ext if Tilt[ext]
+          end
+        rescue LoadError
+          # They don't have the required library required. Oh well.
         end
-      rescue LoadError
-        # They don't have the required library required. Oh well.
       end
     end
 
