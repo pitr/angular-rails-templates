@@ -2,6 +2,11 @@
 
 ### Future
 
+### 0.1.3
+
+- Add array support to config.angular_templates.ignore_prefix [AaronV, #54]
+- Compatibility with slim-rails 2.1.5 [blackxored, #57]
+
 ### 0.1.2
 
 - Automatic Sprockets Cache busting (+ tilt warning silence) [whitehat101, #48]
