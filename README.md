@@ -92,7 +92,7 @@ Here are their default values:
 ```ruby
 # config/application.rb
 config.angular_templates.module_name    = 'templates'
-config.angular_templates.ignore_prefix  = 'templates/'
+config.angular_templates.ignore_prefix  = %w(templates/)
 config.angular_templates.markups        = %w(erb str haml slim md)
 config.angular_templates.htmlcompressor = false
 ```
@@ -114,9 +114,9 @@ Although it is not recommended, you can set `module_name` to the name of your ma
 
 `ignore_prefix` will be stripped from the beginning of the `templateUrl` it reports to angularjs.
 
-Since the default ignore_prefix is `templates/`, any templates placed under `app/assets/javascripts/templates` will automatically have short names. If your templates are not in this location, you will need to use the full path to the template.
+Since the default ignore_prefix is [`templates/`], any templates placed under `app/assets/javascripts/templates` will automatically have short names. If your templates are not in this location, you will need to use the full path to the template.
 
-You can set `config.angular_templates.ignore_prefix` to change the default ignore prefix. Default is `templates/`.
+You can set `config.angular_templates.ignore_prefix` to change the default ignore prefix. Default is [`templates/`].
 
 
 ``` javascript

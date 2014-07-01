@@ -70,7 +70,8 @@ describe "user assets integration" do
   describe "templates in assets/javascript/ignored_namespace" do
 
     it "is configured with a custom namespace" do
-      assert_match config.ignore_prefix, 'ignored_namespace/'
+      assert_equal config.ignore_prefix.count, 1
+      assert_match config.ignore_prefix[0], "ignored_namespace/"
     end
 
     it "compiles haml (slim_template.html.slim)" do

@@ -50,7 +50,7 @@ class PrecompileTest < Minitest::Test
   def test_precompile_succeeds_in_development_environment
     contents = precompile! 'development'
 
-    assert_match "angular_templates.ignore_prefix: ignored_namespace/", contents
+    assert_match "angular_templates.ignore_prefix: [\"ignored_namespace/\"]", contents
     assert_match "angular_templates.markups:", contents
     assert_match /source: .+\/ignored_namespace\//, contents
   end
