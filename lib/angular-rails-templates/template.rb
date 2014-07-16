@@ -10,9 +10,11 @@ module AngularRailsTemplates
       'application/javascript'
     end
 
-    # this method is mandatory on Tilt::Template subclasses
     def prepare
-      if configuration.htmlcompressor
+      # we only want to process html assets inside Rails.root/app/assets
+      @asset_inside_rails_root = file.match "#{Rails.root.join 'app', 'assets'}"
+
+      if configuration.htmlcompressor and @asset_inside_rails_root
         @data = compress data
       end
     end
@@ -23,7 +25,11 @@ module AngularRailsTemplates
       locals[:source_file] = "#{scope.pathname}".sub(/^#{Rails.root}\//,'')
       locals[:angular_module] = configuration.module_name
 
-      AngularJsTemplateWrapper.render(scope, locals)
+      if @asset_inside_rails_root
+        AngularJsTemplateWrapper.render(scope, locals)
+      else
+        data
+      end
     end
 
     private
