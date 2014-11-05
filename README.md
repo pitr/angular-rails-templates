@@ -26,7 +26,7 @@ Then, in your `application.js` file, require `angular-rails-templates` and your 
 // Templates in app/assets/javascript/templates
 //= require_tree ./templates
 // OR
-// Templates in app/assets/templates
+// Templates in app/assets/templates (but see step 5)
 //= require_tree ../templates
 ```
 
@@ -83,6 +83,10 @@ The templates can then be accessed via `templateUrl` as expected:
   templateUrl: 'yourTemplate.html'
 }
 ```
+
+### 5. Avoid name collisions
+
+If you have `app/assets/javascript/user.js` and `app/assets/templates/user.html`, the former one will actually hide the latter. This is due to how Rails asset pipeline sees asset files, both are served under `/assets/user.js`. Please use namespacing to combat this issue.
 
 ## Advanced Configuration
 
