@@ -77,11 +77,17 @@ modals/dialog.html.slim.erb.str => modals/dialog.html # don't do this
 
 The templates can then be accessed via `templateUrl` as expected:
 
-``` javascript
+```javascript
 // Template: app/assets/templates/yourTemplate.html.haml
 {
   templateUrl: 'yourTemplate.html'
 }
+```
+
+Or anything else that uses `$templateCache` or `$templateRequest`
+
+```html
+<div ng-include='"yourTemplate.html"'></div>
 ```
 
 ### 5. Avoid name collisions
