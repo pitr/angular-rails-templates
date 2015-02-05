@@ -51,7 +51,7 @@ Angular Rails Templates will try to load support for the following markups if th
 | .str      | -                                                        |
 | .haml     | haml                                                     |
 | .slim     | slim                                                     |
-| .md       | liquid, rdiscount, redcrpet, bluecloth, kramdown, maruku |
+| .md       | liquid, rdiscount, redcarpet, bluecloth, kramdown, maruku |
 
 See [Advanced](#advanced-configuration) if you would like to use other markup languages.
 
