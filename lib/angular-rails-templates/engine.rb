@@ -23,7 +23,7 @@ module AngularRailsTemplates
     end
 
 
-    initializer 'angular-rails-templates' do |app|
+    initializer 'angular-rails-templates', group: :assets  do |app|
       if app.config.assets
         require 'sprockets'
         require 'sprockets/engines' # load sprockets for Rails 3
