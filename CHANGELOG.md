@@ -2,6 +2,10 @@
 
 ### Future
 
+### 0.1.4
+
+- Run when `initialize_on_precompile = false` [squirly, #84]
+
 ### 0.1.3
 
 - Add array support to config.angular_templates.ignore_prefix [AaronV, #54]
