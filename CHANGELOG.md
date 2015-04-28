@@ -2,6 +2,10 @@
 
 ### Future
 
+### 0.1.5
+
+- Lock Sprocket support to version 2 [davetron5000, #96]
+
 ### 0.1.4
 
 - Run when `initialize_on_precompile = false` [squirly, #84]
