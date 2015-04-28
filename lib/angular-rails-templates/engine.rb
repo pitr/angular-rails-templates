@@ -5,6 +5,7 @@ module AngularRailsTemplates
     config.angular_templates = ActiveSupport::OrderedOptions.new
     config.angular_templates.module_name    = 'templates'
     config.angular_templates.ignore_prefix  = ['templates/']
+    config.angular_templates.inside_paths  = [find_root('.').join('app', 'assets')]
     config.angular_templates.markups        = []
     config.angular_templates.htmlcompressor = false
 
