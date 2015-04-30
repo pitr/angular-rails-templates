@@ -2,6 +2,10 @@
 
 ### Future
 
+### 0.2.0
+
+- Add config.angular_templates.inside_paths [sars, #90]
+
 ### 0.1.5
 
 - Lock Sprocket support to version 2 [davetron5000, #96]
