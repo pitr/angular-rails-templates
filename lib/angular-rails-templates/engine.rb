@@ -5,10 +5,13 @@ module AngularRailsTemplates
     config.angular_templates = ActiveSupport::OrderedOptions.new
     config.angular_templates.module_name    = 'templates'
     config.angular_templates.ignore_prefix  = ['templates/']
+    config.angular_templates.inside_paths   = [] # defined in before_configuration
     config.angular_templates.markups        = []
     config.angular_templates.htmlcompressor = false
 
     config.before_configuration do |app|
+      config.angular_templates.inside_paths = [Rails.root.join('app', 'assets')]
+
       # try loading common markups
       %w(erb haml liquid md radius slim str textile wiki).
       each do |ext|

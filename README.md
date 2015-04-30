@@ -103,6 +103,7 @@ Here are their default values:
 # config/application.rb
 config.angular_templates.module_name    = 'templates'
 config.angular_templates.ignore_prefix  = %w(templates/)
+config.angular_templates.inside_paths   = [Rails.root.join('app', 'assets')]
 config.angular_templates.markups        = %w(erb str haml slim md)
 config.angular_templates.htmlcompressor = false
 ```
@@ -153,6 +154,11 @@ You can set `config.angular_templates.ignore_prefix` to change the default ignor
   templateUrl: 'yourTemplate.html'
 }
 ```
+
+
+### Configuration Option: `inside_paths`
+
+Templates only from paths matched by `inside_paths` will be used. By default anything under app/assets can be templates. This option is useful if you are using this gem inside an engine. Also useful if you DON'T want some files to be processed by this gem (see issue #88)
 
 
 ### Configuration Option: `markups`
