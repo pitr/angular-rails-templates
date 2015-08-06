@@ -11,8 +11,9 @@ module AngularRailsTemplates
     end
 
     def prepare
+      rel_file_path = Pathname.new(file).relative_path_from(Rails.root).to_s
       # we only want to process html assets inside those specified in configuration.inside_paths
-      @asset_should_be_processed = configuration.inside_paths.any? { |folder| file.match(folder.to_s) }
+      @asset_should_be_processed = configuration.inside_paths.any? { |folder| rel_file_path.match(folder.to_s) }
 
       unless @asset_should_be_processed
         @data = nil
