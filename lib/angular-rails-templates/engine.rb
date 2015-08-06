@@ -10,7 +10,7 @@ module AngularRailsTemplates
     config.angular_templates.htmlcompressor = false
 
     config.before_configuration do |app|
-      config.angular_templates.inside_paths = [Rails.root.join('app', 'assets')]
+      config.angular_templates.inside_paths = [File.join('app', 'assets')]
 
       # try loading common markups
       %w(erb haml liquid md radius slim str textile wiki).
