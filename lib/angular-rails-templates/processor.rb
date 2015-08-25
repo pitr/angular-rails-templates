@@ -40,7 +40,7 @@ module AngularRailsTemplates
       angular_template_name = template_name(input[:name])
       angular_module = config.module_name
       html = render_html(input)
-      source_file = input[:filename]
+      source_file = "#{input[:filename]}".sub(/^#{Rails.root}\//,'')
       erb = ERB.new(File.read("#{File.dirname __FILE__}/javascript_template.js.erb"))
 
       result = erb.result binding
