@@ -13,6 +13,10 @@ module AngularRailsTemplates
     def prepare
       # we only want to process html assets inside those specified in configuration.inside_paths
       @asset_should_be_processed = configuration.inside_paths.any? { |folder| file.match(folder.to_s) }
+      unless @asset_should_be_processed
+        @data = nil
+        return
+      end
 
       if configuration.htmlcompressor and @asset_should_be_processed
         @data = compress data
@@ -20,12 +24,11 @@ module AngularRailsTemplates
     end
 
     def evaluate(scope, locals, &block)
-      locals[:html] = escape_javascript data.chomp
-      locals[:angular_template_name] = logical_template_path(scope)
-      locals[:source_file] = "#{scope.pathname}".sub(/^#{Rails.root}\//,'')
-      locals[:angular_module] = configuration.module_name
-
       if @asset_should_be_processed
+        locals[:html] = escape_javascript data.chomp
+        locals[:angular_template_name] = logical_template_path(scope)
+        locals[:source_file] = "#{scope.pathname}".sub(/^#{Rails.root}\//,'')
+        locals[:angular_module] = configuration.module_name
         AngularJsTemplateWrapper.render(scope, locals)
       else
         data
