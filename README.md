@@ -41,7 +41,7 @@ foo.html.haml
 foo.html.slim
 ```
 
-Caution: *`.ngslim` and `.nghaml` are no longer supported!*
+Caution: *`.ngslim` is no longer supported!*
 
 Angular Rails Templates will try to load support for the following markups if their gems are present:
 
