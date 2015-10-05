@@ -37,7 +37,7 @@ Name your templates like you would name any other Rails view. **The `.html` part
 ```
 foo.html
 foo.html.erb
-foo.html.haml
+foo.html.nghaml
 foo.html.slim
 ```
 
@@ -78,7 +78,7 @@ modals/dialog.html.slim.erb.str => modals/dialog.html # don't do this
 The templates can then be accessed via `templateUrl` as expected:
 
 ```javascript
-// Template: app/assets/templates/yourTemplate.html.haml
+// Template: app/assets/templates/yourTemplate.html.nghaml
 {
   templateUrl: 'yourTemplate.html'
 }
