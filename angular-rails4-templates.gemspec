@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "angular-rails4-templates"
   s.version     = AngularRailsTemplates::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Damien Mathieu", 'pitr', 'whitehat101']
-  s.email       = ["pitr.vern@gmail.com"]
+  s.authors     = ["Damien Mathieu", 'pitr', 'whitehat101', "Chris Nelson"]
+  s.email       = ["chris@gaslight.co"]
   s.homepage    = "https://github.com/pitr/angular-rails-templates"
   s.summary     = "Use your angular templates with rails' asset pipeline"
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
 
-  s.add_dependency "railties", ">= 3.1"
+  s.add_dependency "railties", ">= 4"
   s.add_dependency "sprockets", "~> 3"
 
   s.add_development_dependency "minitest"
