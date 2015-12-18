@@ -9,7 +9,7 @@ rescue Exception
 end
 
 Bundler.require(*Rails.groups)
-require "angular-rails-templates"
+require "angular-rails4-templates"
 
 module Dummy
   class Application < Rails::Application

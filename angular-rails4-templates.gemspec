@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "angular-rails-templates/version"
+require "angular-rails4-templates/version"
 
 Gem::Specification.new do |s|
   s.name        = "angular-rails4-templates"
-  s.version     = AngularRailsTemplates::VERSION
+  s.version     = AngularRails4Templates::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Damien Mathieu", 'pitr', 'whitehat101', "Chris Nelson"]
   s.email       = ["chris@gaslight.co"]
-  s.homepage    = "https://github.com/pitr/angular-rails-templates"
-  s.summary     = "Use your angular templates with rails' asset pipeline"
+  s.homepage    = "https://github.com/gasligh/angular-rails4-templates"
+  s.summary     = "Use your angular templates with rails4/sprockets3 asset pipeline"
 
   s.files = %w(README.md LICENSE) + Dir["lib/**/*", "vendor/**/*"]
   s.license = 'MIT'

@@ -51,3 +51,4 @@ module AngularRails4Templates
     end
   end
 end
+
