@@ -28,24 +28,26 @@ module AngularRailsTemplates
 
     initializer 'angular-rails-templates', group: :all  do |app|
       if app.config.assets
-        require 'sprockets'
-        require 'sprockets/engines' # load sprockets for Rails 3
+        app.config.assets.configure do |env|
+          require 'sprockets'
+          require 'sprockets/engines' # load sprockets for Rails 3
 
-        app.assets.register_mime_type 'text/ng-html', extensions: ['.nghtml']
-        app.assets.register_mime_type 'text/ng-haml', extensions: ['.nghaml']
-        app.assets.register_mime_type 'text/ng-slim', extensions: ['.ngslim']
-        app.assets.register_transformer 'text/ng-slim', 'application/javascript', AngularRailsTemplates::SlimProcessor
-        app.assets.register_transformer 'text/ng-haml', 'application/javascript', AngularRailsTemplates::HamlProcessor
-        app.assets.register_transformer 'text/ng-html', 'application/javascript', AngularRailsTemplates::Processor
+          env.register_mime_type 'text/ng-html', extensions: ['.nghtml']
+          env.register_mime_type 'text/ng-haml', extensions: ['.nghaml']
+          env.register_mime_type 'text/ng-slim', extensions: ['.ngslim']
+          env.register_transformer 'text/ng-slim', 'application/javascript', AngularRailsTemplates::SlimProcessor
+          env.register_transformer 'text/ng-haml', 'application/javascript', AngularRailsTemplates::HamlProcessor
+          env.register_transformer 'text/ng-html', 'application/javascript', AngularRailsTemplates::Processor
+        end
+        
+        # Sprockets Cache Busting
+        # If ART's version or settings change, expire and recompile all assets
+        app.config.assets.version = [
+          app.config.assets.version,
+          'ART',
+          Digest::MD5.hexdigest("#{VERSION}-#{app.config.angular_templates}")
+        ].join '-'
       end
-
-      # Sprockets Cache Busting
-      # If ART's version or settings change, expire and recompile all assets
-      app.config.assets.version = [
-        app.config.assets.version,
-        'ART',
-        Digest::MD5.hexdigest("#{VERSION}-#{app.config.angular_templates}")
-      ].join '-'
     end
 
 
