@@ -27,35 +27,16 @@ module AngularRails4Templates
 
 
     initializer 'angular-rails-templates', group: :all  do |app|
-      if app.config.assets
+      app.config.assets.configure do |env|
         require 'sprockets'
         require 'sprockets/engines' # load sprockets for Rails 3
 
-        # if app.config.angular_templates.htmlcompressor
-        #   require 'htmlcompressor/compressor'
-        #   unless app.config.angular_templates.htmlcompressor.is_a? Hash
-        #     app.config.angular_templates.htmlcompressor = {remove_intertag_spaces: true}
-        #   end
-        # end
-        #
-        # # These engines render markup as HTML
-        # app.config.angular_templates.markups.each do |ext|
-        #   # Processed haml/slim templates have a mime-type of text/html.
-        #   # If sprockets sees a `foo.html.haml` it will process the haml
-        #   # and stop, because the haml output is html. Our html engine won't get run.
-        #   mimeless_engine = Class.new(Tilt[ext]) do
-        #     def self.default_mime_type
-        #       nil
-        #     end
-        #   end
-        #
-        #   app.assets.register_engine ".#{ext}", mimeless_engine
-        # end
-
-        app.assets.register_mime_type 'text/ng-html', extensions: ['.nghtml']
-        app.assets.register_mime_type 'text/ng-haml', extensions: ['.nghaml']
-        app.assets.register_transformer 'text/ng-haml', 'application/javascript', AngularRails4Templates::HamlProcessor
-        app.assets.register_transformer 'text/ng-html', 'application/javascript', AngularRails4Templates::Processor
+        env.register_mime_type 'text/ng-html', extensions: ['.nghtml']
+        env.register_mime_type 'text/ng-haml', extensions: ['.nghaml']
+        env.register_mime_type 'text/ng-slim', extensions: ['.ngslim']
+        env.register_transformer 'text/ng-slim', 'application/javascript', AngularRails4Templates::SlimProcessor
+        env.register_transformer 'text/ng-haml', 'application/javascript', AngularRails4Templates::HamlProcessor
+        env.register_transformer 'text/ng-html', 'application/javascript', AngularRails4Templates::Processor
       end
 
       # Sprockets Cache Busting
