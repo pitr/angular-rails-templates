@@ -17,12 +17,12 @@ gem 'angular-rails4-templates'
 
 ### 2. Include Templates in Rails Asset Pipeline
 
-Then, in your `application.js` file, require `angular-rails-templates` and your templates:
+Then, in your `application.js` file, require `angular-rails4-templates` and your templates:
 
 ```javascript
 //= require angularjs
 // ...
-//= require angular-rails-templates
+//= require angular-rails4-templates
 //
 // Templates in app/assets/javascript/templates
 //= require_tree ./templates
@@ -31,7 +31,7 @@ Then, in your `application.js` file, require `angular-rails-templates` and your 
 //= require_tree ../templates
 ```
 
-Make sure to `require angular-rails-templates` **before** you require your templates.
+Make sure to `require angular-rails4-templates` **before** you require your templates.
 
 You'll need to use specific extensions to run the right preprocessor and load the resulting
 compiled template into the angular template cache.
@@ -112,7 +112,7 @@ It is used to generate javascript like:
 angular.module("<%= module_name %>")...
 ```
 
-Although it is not recommended, you can set `module_name` to the name of your main application module and remove `require angular-rails-templates` from your javascript manifest to have your templates directly injected into your app.
+Although it is not recommended, you can set `module_name` to the name of your main application module and remove `require angular-rails4-templates` from your javascript manifest to have your templates directly injected into your app.
 
 ### Configuration Option: `ignore_prefix`
 
