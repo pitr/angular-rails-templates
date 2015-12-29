@@ -59,12 +59,12 @@ describe "user assets integration" do
     end
 
     # assuming the user loads slim
-    # xit "compiles slim (slim_template.html.slim)" do
-    #   visit '/assets/slim_template.js'
-    #   page.source.must_include %Q{// source: app/assets/javascripts/slim_template.html.slim}
-    #   page.source.must_include %Q{$templateCache.put("slim_template.html"}
-    #   page.source.must_include %q{"<h1>slim template</h1>"}
-    # end
+    it "compiles slim (slim_template.ngslim)" do
+      visit '/assets/slim_template.js'
+      page.source.must_include %Q{// source: app/assets/javascripts/slim_template.ngslim}
+      page.source.must_include %Q{$templateCache.put("slim_template.html"}
+      page.source.must_include %q{"<h1>slim template</h1>"}
+    end
   end
 
   # describe "templates in assets/javascript/ignored_namespace" do

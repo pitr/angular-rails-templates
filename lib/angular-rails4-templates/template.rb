@@ -1,4 +1,4 @@
-require 'angular-rails-templates/compact_javascript_escape'
+require 'angular-rails4-templates/compact_javascript_escape'
 
 module AngularRails4Templates
   class Template < ::Tilt::Template
@@ -51,4 +51,3 @@ module AngularRails4Templates
     end
   end
 end
-
