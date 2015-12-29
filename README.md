@@ -217,3 +217,4 @@ MIT License. Copyright 2014 Pitr
 * Damien Mathieu <42@dmathieu.com>
 * pitr <pitr.vern@gmail.com>
 * Jeremy Ebler <jebler@gmail.com>
+* Chris Nelson <chris@teamgaslight.com>
