@@ -1,6 +1,6 @@
-require 'angular-rails-templates/compact_javascript_escape'
+require 'angular-rails4-templates/compact_javascript_escape'
 
-module AngularRailsTemplates
+module AngularRails4Templates
   class Template < ::Tilt::Template
     include CompactJavaScriptEscape
     AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
@@ -51,4 +51,3 @@ module AngularRailsTemplates
     end
   end
 end
-

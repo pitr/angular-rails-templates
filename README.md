@@ -1,6 +1,7 @@
-# Angular Rails Templates [![Build Status](https://secure.travis-ci.org/pitr/angular-rails-templates.png?branch=master)](http://travis-ci.org/pitr/angular-rails-templates)
+# Angular Rails4 Templates
 
-Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline.
+Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline. This gem is the updated version
+of https://github.com/pitr/angular-rails-templates that supports Sprockets3 and Rails4.
 
 It removes the need for AJAX calls to retrieve the templates (or for you to manually set them into the DOM).
 
@@ -11,17 +12,17 @@ It removes the need for AJAX calls to retrieve the templates (or for you to manu
 In Gemfile
 
 ```ruby
-gem 'angular-rails-templates'
+gem 'angular-rails4-templates'
 ```
 
 ### 2. Include Templates in Rails Asset Pipeline
 
-Then, in your `application.js` file, require `angular-rails-templates` and your templates:
+Then, in your `application.js` file, require `angular-rails4-templates` and your templates:
 
 ```javascript
 //= require angularjs
 // ...
-//= require angular-rails-templates
+//= require angular-rails4-templates
 //
 // Templates in app/assets/javascript/templates
 //= require_tree ./templates
@@ -30,28 +31,24 @@ Then, in your `application.js` file, require `angular-rails-templates` and your 
 //= require_tree ../templates
 ```
 
-Make sure to `require angular-rails-templates` **before** you require your templates.
+Make sure to `require angular-rails4-templates` **before** you require your templates.
 
-Name your templates like you would name any other Rails view. **The `.html` part is required.** If it is not present your views will not be added to angular's template cache.
+You'll need to use specific extensions to run the right preprocessor and load the resulting
+compiled template into the angular template cache.
 
 ```
-foo.html
-foo.html.erb
-foo.html.haml
-foo.html.slim
+foo.nghtml
+foo.html.nghaml
+foo.html.ngslim
 ```
+Caution: *`.ngslim` is no longer supported!*
 
-Caution: *`.ngslim` and `.nghaml` are no longer supported!*
-
-Angular Rails Templates will try to load support for the following markups if their gems are present:
+Angular Rails Templates will try to load support for the following preprocessors if their gems are present:
 
 | Extension | Required gem                                             |
 |---------- |----------------------------------------------------------|
-| .erb      | -                                                        |
-| .str      | -                                                        |
-| .haml     | haml                                                     |
-| .slim     | slim                                                     |
-| .md       | liquid, rdiscount, redcarpet, bluecloth, kramdown, maruku |
+| .nghaml   | haml                                                     |
+| .ngslim   | slim                                                     |
 
 See [Advanced](#advanced-configuration) if you would like to use other markup languages.
 
@@ -69,16 +66,14 @@ No matter what the source file extension is, your template's url will be  `#{bas
 
 For example:
 ```ruby
-main.html => main.html
-widget.html.haml => widget.html
-modals/confirm.html.slim => modals/confirm.html
-modals/dialog.html.slim.erb.str => modals/dialog.html # don't do this
+main.nghtml => main.html
+widget.nghaml => widget.html
 ```
 
 The templates can then be accessed via `templateUrl` as expected:
 
 ```javascript
-// Template: app/assets/templates/yourTemplate.html.haml
+// Template: app/assets/templates/yourTemplate.html.nghaml
 {
   templateUrl: 'yourTemplate.html'
 }
@@ -117,7 +112,7 @@ It is used to generate javascript like:
 angular.module("<%= module_name %>")...
 ```
 
-Although it is not recommended, you can set `module_name` to the name of your main application module and remove `require angular-rails-templates` from your javascript manifest to have your templates directly injected into your app.
+Although it is not recommended, you can set `module_name` to the name of your main application module and remove `require angular-rails4-templates` from your javascript manifest to have your templates directly injected into your app.
 
 ### Configuration Option: `ignore_prefix`
 
@@ -222,3 +217,4 @@ MIT License. Copyright 2014 Pitr
 * Damien Mathieu <42@dmathieu.com>
 * pitr <pitr.vern@gmail.com>
 * Jeremy Ebler <jebler@gmail.com>
+* Chris Nelson <chris@teamgaslight.com>

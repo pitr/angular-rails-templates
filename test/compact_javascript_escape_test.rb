@@ -1,9 +1,9 @@
 require 'test_helper'
-require 'angular-rails-templates/compact_javascript_escape'
+require 'angular-rails4-templates/compact_javascript_escape'
 
-describe AngularRailsTemplates::CompactJavaScriptEscape do
+describe AngularRails4Templates::CompactJavaScriptEscape do
   let(:instance) do
-    Class.new { include AngularRailsTemplates::CompactJavaScriptEscape }.new
+    Class.new { include AngularRails4Templates::CompactJavaScriptEscape }.new
   end
 
   it "responds to :escape_javascript" do

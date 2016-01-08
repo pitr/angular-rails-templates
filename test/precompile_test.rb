@@ -32,7 +32,7 @@ class PrecompileTest < Minitest::Test
     assert_match 'angular.module("templates")', contents
 
     # Test the inclusion of the templates
-    %w(erb_template haml_template hello-world markdown plain slim_template sub/sub sub/sub2 subfolder/haml_template subfolder/slim_template subfolder/template subfolder2/template test).
+    %w(haml_template plain sub/sub sub/sub2 subfolder/haml_template subfolder/template subfolder2/template test).
     each do |file|
       assert_match %Q{.put("#{file}.html"}, contents
     end
