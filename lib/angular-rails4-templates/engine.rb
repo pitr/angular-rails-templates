@@ -34,8 +34,12 @@ module AngularRails4Templates
         env.register_mime_type 'text/ng-html', extensions: ['.nghtml']
         env.register_mime_type 'text/ng-haml', extensions: ['.nghaml']
         env.register_mime_type 'text/ng-slim', extensions: ['.ngslim']
-        env.register_transformer 'text/ng-slim', 'application/javascript', AngularRails4Templates::SlimProcessor
-        env.register_transformer 'text/ng-haml', 'application/javascript', AngularRails4Templates::HamlProcessor
+        if defined? Slim
+          env.register_transformer 'text/ng-slim', 'application/javascript', AngularRails4Templates::SlimProcessor
+        end
+        if defined? Haml
+          env.register_transformer 'text/ng-haml', 'application/javascript', AngularRails4Templates::HamlProcessor
+        end
         env.register_transformer 'text/ng-html', 'application/javascript', AngularRails4Templates::Processor
       end
 
