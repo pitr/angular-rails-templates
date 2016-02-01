@@ -2,6 +2,8 @@
 
 Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline.
 
+**IMPORTANT**: for Rails 4.2+ use version 1.0+ of this gem. For Rails 3 - 4.1 use version 0.x
+
 It removes the need for AJAX calls to retrieve the templates (or for you to manually set them into the DOM).
 
 ## Usage

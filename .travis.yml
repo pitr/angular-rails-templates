@@ -1,6 +1,5 @@
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 2.2.2
   - jruby-19mode
   - ruby-head
 
@@ -10,6 +9,5 @@ matrix:
     - gemfile: gemfiles/rails_head.gemfile
 
 gemfile:
-  - gemfiles/rails_3.gemfile
-  - gemfiles/rails_4.gemfile
+  - gemfiles/rails_4.2.gemfile
   - gemfiles/rails_head.gemfile
