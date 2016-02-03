@@ -42,7 +42,9 @@ module AngularRailsTemplates
 
       locals[:html] = escape_javascript(input[:data].chomp)
 
-      if config.inside_paths.any? { |folder| input[:filename].match(folder.to_s) }
+      file_path = Pathname.new(input[:filename]).relative_path_from(Rails.root).to_s
+
+      if config.inside_paths.any? { |folder| file_path.match(folder.to_s) }
         AngularJsTemplateWrapper.render(nil, locals)
       else
         input[:data]
