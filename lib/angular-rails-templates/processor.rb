@@ -35,6 +35,12 @@ module AngularRailsTemplates
     end
 
     def call(input)
+      file_path = Pathname.new(input[:filename]).relative_path_from(Rails.root).to_s
+
+      unless config.inside_paths.any? { |folder| file_path.match(folder.to_s) }
+        return input[:data]
+      end
+
       locals = {}
       locals[:angular_template_name] = template_name(input[:name])
       locals[:angular_module] = config.module_name
@@ -42,13 +48,7 @@ module AngularRailsTemplates
 
       locals[:html] = escape_javascript(input[:data].chomp)
 
-      file_path = Pathname.new(input[:filename]).relative_path_from(Rails.root).to_s
-
-      if config.inside_paths.any? { |folder| file_path.match(folder.to_s) }
-        AngularJsTemplateWrapper.render(nil, locals)
-      else
-        input[:data]
-      end
+      AngularJsTemplateWrapper.render(nil, locals)
     end
   end
 end
