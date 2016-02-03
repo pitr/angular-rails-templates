@@ -7,6 +7,7 @@ module AngularRailsTemplates
     config.angular_templates.ignore_prefix  = ['templates/']
     config.angular_templates.inside_paths   = [] # defined in before_configuration
     config.angular_templates.markups        = []
+    config.angular_templates.extension      = 'html'
 
     config.before_configuration do |app|
       config.angular_templates.inside_paths = [Rails.root.join('app', 'assets')]
@@ -31,8 +32,7 @@ module AngularRailsTemplates
         require 'sprockets/engines' # load sprockets for Rails 3
 
         config.assets.configure do |env|
-          # byebug
-          env.register_mime_type 'text/ng-html', extensions: ['.html']
+          env.register_mime_type 'text/ng-html', extensions: [".#{app.config.angular_templates.extension}"]
           env.register_transformer 'text/ng-html', 'application/javascript', AngularRailsTemplates::Processor
 
           # These engines render markup as HTML

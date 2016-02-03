@@ -107,6 +107,7 @@ config.angular_templates.module_name    = 'templates'
 config.angular_templates.ignore_prefix  = %w(templates/)
 config.angular_templates.inside_paths   = [Rails.root.join('app', 'assets')]
 config.angular_templates.markups        = %w(erb str haml slim md)
+config.angular_templates.extension      = 'html'
 ```
 
 ### Configuration Option: `module_name`
@@ -186,6 +187,10 @@ Tilt.register Tilt::HamlTemplate, 'nghaml'
 config.angular_templates.markups.push 'nghaml'
 ```
 Note: You would still need to use `foo`**`.html`**`.nghaml`
+
+### Configuration Option: `extension`
+
+By default this gem looks only at templates with `.html` suffix, eg. `foo.html` or `foo.html.haml`. This extension allows you to change that to another extension
 
 ## License
 

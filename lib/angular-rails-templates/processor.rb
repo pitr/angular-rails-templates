@@ -31,7 +31,7 @@ module AngularRailsTemplates
 
     def template_name(name)
       path = name.sub /^(#{config.ignore_prefix.join('|')})/, ''
-      "#{path}.html"
+      "#{path}.#{config.extension}"
     end
 
     def call(input)

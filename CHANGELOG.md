@@ -2,6 +2,8 @@
 
 ### Future
 
+- Configurable extension `.html` [speranskydanil, #99]
+
 ### 1.0.0.beta1
 
 - Add support for Rails 4.2
