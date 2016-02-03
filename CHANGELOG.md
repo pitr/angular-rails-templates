@@ -2,6 +2,11 @@
 
 ### Future
 
+### 1.0.0.beta1
+
+- Add support for Rails 4.2
+- Remove support for Rails 4.1 and less
+
 ### 0.2.0
 
 - Add config.angular_templates.inside_paths [sars, #90]
