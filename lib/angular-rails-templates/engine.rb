@@ -25,10 +25,7 @@ module AngularRailsTemplates
 
 
     initializer 'angular-rails-templates', group: :all  do |app|
-      if app.config.assets
-        require 'sprockets'
-        require 'sprockets/engines' # load sprockets for Rails 3
-
+      if defined?(Sprockets::Railtie)
         config.assets.configure do |env|
           env.register_mime_type 'text/ng-html', extensions: [".#{app.config.angular_templates.extension}"]
           env.register_transformer 'text/ng-html', 'application/javascript', AngularRailsTemplates::Processor
