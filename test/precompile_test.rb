@@ -18,7 +18,7 @@ class PrecompileTest < Minitest::Test
   end
 
   def precompile!(rails_env)
-    quietly do
+    silence_stream(STDERR) do
       Dir.chdir(app_path) { `bundle exec rake assets:precompile RAILS_ENV=#{rails_env}` }
     end
 
