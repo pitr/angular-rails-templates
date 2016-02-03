@@ -3,6 +3,8 @@ require 'angular-rails-templates/compact_javascript_escape'
 module AngularRailsTemplates
   class Processor
 
+    AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+
     include CompactJavaScriptEscape
 
     def self.instance
@@ -27,25 +29,24 @@ module AngularRailsTemplates
       @cache_key = [self.class.name, VERSION, options].freeze
     end
 
-    def render_html(input)
-      escape_javascript input[:data].chomp
-    end
-
     def template_name(name)
       path = name.sub /^(#{config.ignore_prefix.join('|')})/, ''
       "#{path}.html"
     end
 
     def call(input)
-      angular_template_name = template_name(input[:name])
-      angular_module = config.module_name
-      html = render_html(input)
-      source_file = "#{input[:filename]}".sub(/^#{Rails.root}\//,'')
-      erb = ERB.new(File.read("#{File.dirname __FILE__}/javascript_template.js.erb"))
+      locals = {}
+      locals[:angular_template_name] = template_name(input[:name])
+      locals[:angular_module] = config.module_name
+      locals[:source_file] = "#{input[:filename]}".sub(/^#{Rails.root}\//,'')
 
-      result = erb.result binding
+      locals[:html] = escape_javascript(input[:data].chomp)
 
-      result
+      if config.inside_paths.any? { |folder| input[:filename].match(folder.to_s) }
+        AngularJsTemplateWrapper.render(nil, locals)
+      else
+        input[:data]
+      end
     end
   end
 end
