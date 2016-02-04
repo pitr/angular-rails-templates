@@ -1,5 +1,3 @@
-require 'tilt'
-
 module AngularRailsTemplates
   class Engine < ::Rails::Engine
     config.angular_templates = ActiveSupport::OrderedOptions.new

@@ -1,3 +1,5 @@
+require 'tilt'
+
 require 'angular-rails-templates/compact_javascript_escape'
 require 'angular-rails-templates/processor'
 require 'angular-rails-templates/engine'
