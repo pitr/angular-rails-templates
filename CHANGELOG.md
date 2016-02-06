@@ -2,6 +2,9 @@
 
 ### Future
 
+### 1.0.0.beta2
+
+- Loading tilt gem before using
 - Configurable extension `.html` [speranskydanil, #99]
 - Default inside_paths is a relative path [redterror, #108]
 - Do not process files outside inside_paths path [keenahn, #113]
