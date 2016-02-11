@@ -18,9 +18,7 @@ class PrecompileTest < Minitest::Test
   end
 
   def precompile!(rails_env)
-    silence_stream(STDERR) do
-      Dir.chdir(app_path) { `bundle exec rake assets:precompile RAILS_ENV=#{rails_env}` }
-    end
+    Dir.chdir(app_path) { `bundle exec rake assets:precompile RAILS_ENV=#{rails_env} 2> /dev/null` }
 
     appjs = Dir["#{app_path}/public/assets/application*.js"].first
 
