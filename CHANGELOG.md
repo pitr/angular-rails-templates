@@ -15,7 +15,7 @@
 
 ### 1.0.0.beta1
 
-- Add support for Rails 4.2
+- Add support for Rails 4.2 [superchris/pitr, #126]
 - Remove support for Rails 4.1 and less
 
 ### 0.2.0

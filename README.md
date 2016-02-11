@@ -43,8 +43,6 @@ foo.html.haml
 foo.html.slim
 ```
 
-Caution: *`.ngslim` is no longer supported!*
-
 Angular Rails Templates will try to load support for the following markups if their gems are present:
 
 | Extension | Required gem                                             |
@@ -80,7 +78,7 @@ modals/dialog.html.slim.erb.str => modals/dialog.html # don't do this
 The templates can then be accessed via `templateUrl` as expected:
 
 ```javascript
-// Template: app/assets/templates/yourTemplate.html.nghaml
+// Template: app/assets/templates/yourTemplate.html.haml
 {
   templateUrl: 'yourTemplate.html'
 }
@@ -194,7 +192,7 @@ By default this gem looks only at templates with `.html` suffix, eg. `foo.html` 
 
 ## License
 
-MIT License. Copyright 2015 pitr
+MIT License. Copyright 2016 pitr
 
 ## Authors & contributors
 
