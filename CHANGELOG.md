@@ -2,6 +2,10 @@
 
 ### Future
 
+### 1.0.0
+
+- Add support for Rails 5.0 [pitr, #131]
+
 ### 1.0.0.beta2
 
 - Loading tilt gem before using
