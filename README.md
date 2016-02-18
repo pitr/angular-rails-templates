@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/pitr/angular-rails-templates.png?label=ready&title=Ready)](https://waffle.io/pitr/angular-rails-templates)
 # Angular Rails Templates [![Build Status](https://secure.travis-ci.org/pitr/angular-rails-templates.png?branch=master)](http://travis-ci.org/pitr/angular-rails-templates)
 
 Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline.
