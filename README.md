@@ -1,5 +1,12 @@
+# Angular Rails Templates
+
+[![Gem Version](https://badge.fury.io/rb/angular-rails-templates.png)](http://badge.fury.io/rb/angular-rails-templates)
+[![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=master)](https://travis-ci.org/pitr/angular-rails-templates)
+[![Coverage Status](https://coveralls.io/repos/pitr/angular-rails-templates/badge.png)](https://coveralls.io/r/pitr/angular-rails-templates)
+[![Code Climate](https://codeclimate.com/github/pitr/angular-rails-templates/badges/gpa.svg)](https://codeclimate.com/github/pitr/angular-rails-templates)
+[![Issue Stats](http://issuestats.com/github/pitr/angular-rails-templates/badge/pr)](http://issuestats.com/github/pitr/angular-rails-templates)
+[![Issue Stats](http://issuestats.com/github/pitr/angular-rails-templates/badge/issue)](http://issuestats.com/github/pitr/angular-rails-templates)
 [![Stories in Ready](https://badge.waffle.io/pitr/angular-rails-templates.png?label=ready&title=Ready)](https://waffle.io/pitr/angular-rails-templates)
-# Angular Rails Templates [![Build Status](https://secure.travis-ci.org/pitr/angular-rails-templates.png?branch=master)](http://travis-ci.org/pitr/angular-rails-templates)
 
 Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline.
 
