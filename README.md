@@ -1,7 +1,6 @@
 # Angular Rails Templates
 
 [![Gem Version](https://badge.fury.io/rb/angular-rails-templates.png)](http://badge.fury.io/rb/angular-rails-templates)
-[![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=master)](https://travis-ci.org/pitr/angular-rails-templates)
 [![Coverage Status](https://coveralls.io/repos/pitr/angular-rails-templates/badge.png)](https://coveralls.io/r/pitr/angular-rails-templates)
 [![Code Climate](https://codeclimate.com/github/pitr/angular-rails-templates/badges/gpa.svg)](https://codeclimate.com/github/pitr/angular-rails-templates)
 [![Issue Stats](http://issuestats.com/github/pitr/angular-rails-templates/badge/pr)](http://issuestats.com/github/pitr/angular-rails-templates)
@@ -11,6 +10,11 @@
 Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline.
 
 **IMPORTANT**: for Rails 4.2+ use version 1.0+ of this gem. For Rails 3 - 4.1 use version 0.x
+
+Branch      | Build Status
+------------|---------
+master      | [![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=master)](https://travis-ci.org/pitr/angular-rails-templates)
+0-x-stable  | [![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=0-x-stable)](https://travis-ci.org/pitr/angular-rails-templates)
 
 It removes the need for AJAX calls to retrieve the templates (or for you to manually set them into the DOM).
 
