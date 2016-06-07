@@ -30,7 +30,11 @@ module AngularRailsTemplates
 
           # These engines render markup as HTML
           app.config.angular_templates.markups.each do |ext|
-            env.register_engine ".#{ext}", Tilt[ext]
+            if Gem::Version.new(Sprockets::VERSION) >= Gem::Version.new('4.x')
+              env.register_engine ".#{ext}", Tilt[ext]
+            else
+              env.register_transformer ".#{ext}", :default, Tilt[ext]
+            end
           end
         end
       end
