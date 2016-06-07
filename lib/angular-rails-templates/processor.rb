@@ -19,7 +19,7 @@ module AngularRailsTemplates
       instance.cache_key
     end
 
-    attr_reader :cache_key, :config
+    attr_reader :cache_key
 
     def config
       Rails.configuration.angular_templates
@@ -30,7 +30,7 @@ module AngularRailsTemplates
     end
 
     def template_name(name)
-      path = name.sub /^(#{config.ignore_prefix.join('|')})/, ''
+      path = name.sub(/^#{config.ignore_prefix.join('|')}/, '')
       "#{path}.#{config.extension}"
     end
 
