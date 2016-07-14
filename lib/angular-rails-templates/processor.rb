@@ -1,9 +1,41 @@
 require 'angular-rails-templates/compact_javascript_escape'
+require 'delegate'
 
 module AngularRailsTemplates
   class Processor
 
-    AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+    AngularJsTemplateWrapper = ::Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+
+    # Temporary wrapper, old one is deprecated by Sprockets 4.
+    # TODO replace.
+    # https://github.com/ai/autoprefixer-rails/blob/master/lib/autoprefixer-rails/sprockets.rb
+    class Tilt < Delegator
+      def initialize(klass)
+        @klass = klass
+      end
+
+      def __getobj__
+        @klass
+      end
+
+      def self.install(env, suffix, ext)
+        env.register_mime_type   "text/ng-#{suffix}", extensions: [".#{ext}.#{suffix}"]
+        env.register_transformer "text/ng-#{suffix}", 'text/ng-html', self[suffix]
+      end
+
+      def self.[](ext)
+        self.new(::Tilt[ext])
+      end
+
+      def call(input)
+        filename = input[:filename]
+        data     = input[:data]
+        context  = input[:environment].context_class.new(input)
+
+        data = @klass.new(filename) { data }.render(context, {})
+        context.metadata.merge(data: data.to_str)
+      end
+    end
 
     include CompactJavaScriptEscape
 

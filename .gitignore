@@ -7,3 +7,4 @@ test/dummy/public/assets/*
 vendor/ruby
 .bundle
 coverage
+.ruby-version
