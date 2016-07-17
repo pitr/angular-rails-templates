@@ -6,7 +6,6 @@ require "sprockets/rails"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
-require "angular-rails-templates"
 
 module Dummy
   class Application < Rails::Application
