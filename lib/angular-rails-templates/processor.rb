@@ -3,7 +3,7 @@ require 'angular-rails-templates/compact_javascript_escape'
 module AngularRailsTemplates
   class Processor
 
-    AngularJsTemplateWrapper = Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
+    AngularJsTemplateWrapper = ::Tilt::ERBTemplate.new "#{File.dirname __FILE__}/javascript_template.js.erb"
 
     include CompactJavaScriptEscape
 
@@ -19,7 +19,7 @@ module AngularRailsTemplates
       instance.cache_key
     end
 
-    attr_reader :cache_key, :config
+    attr_reader :cache_key
 
     def config
       Rails.configuration.angular_templates
@@ -30,7 +30,7 @@ module AngularRailsTemplates
     end
 
     def template_name(name)
-      path = name.sub /^(#{config.ignore_prefix.join('|')})/, ''
+      path = name.sub(/^#{config.ignore_prefix.join('|')}/, '')
       "#{path}.#{config.extension}"
     end
 

@@ -30,7 +30,7 @@ module AngularRailsTemplates
 
           # These engines render markup as HTML
           app.config.angular_templates.markups.each do |ext|
-            env.register_engine ".#{ext}", Tilt[ext]
+            AngularRailsTemplates::Transformer.register(env, ext)
           end
         end
       end

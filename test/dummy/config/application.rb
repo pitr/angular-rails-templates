@@ -6,7 +6,6 @@ require "sprockets/rails"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
-require "angular-rails-templates"
 
 module Dummy
   class Application < Rails::Application
@@ -25,6 +24,7 @@ module Dummy
     config.assets.enabled = true
     config.assets.version = "#{Time.now}" # always expire cached assets on Rails Boot
 
+    config.assets.precompile = ["manifest.js"] unless ::Sprockets::VERSION.to_i < 4
     config.angular_templates.ignore_prefix = 'ignored_namespace/'
   end
 end

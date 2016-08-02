@@ -6,3 +6,6 @@ test/dummy/public/assets/*
 .DS_Store
 vendor/ruby
 .bundle
+coverage
+.ruby-version
+/.idea
