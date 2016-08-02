@@ -2,6 +2,10 @@
 
 ### Future
 
+### 1.0.1
+
+- Better support for Rails 5 and Sprockets 4 [merqlove/sandrew, #142]
+
 ### 1.0.0
 
 - Add support for Rails 5.0 [pitr, #131]
