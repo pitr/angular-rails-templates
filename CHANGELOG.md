@@ -2,6 +2,8 @@
 
 ### Future
 
+- Silence deprecation warning on sprockets 3.7 [kressh, #145]
+
 ### 1.0.1
 
 - Better support for Rails 5 and Sprockets 4 [merqlove/sandrew, #142]
