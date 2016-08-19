@@ -2,6 +2,8 @@
 
 ### Future
 
+### 1.0.2
+
 - Silence deprecation warning on sprockets 3.7 [kressh, #145]
 
 ### 1.0.1
