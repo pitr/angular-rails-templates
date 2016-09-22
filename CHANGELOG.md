@@ -1,6 +1,6 @@
 ## Changelog
 
-### Future
+### [Unreleased]
 
 ### 1.0.2
 
