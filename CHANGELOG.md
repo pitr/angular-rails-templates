@@ -2,6 +2,12 @@
 
 ### Future
 
+### 0.3.0
+
+- specify mime-types < 3 due to requirement for ruby 2.0 [pitr]
+- fix bug where html files outside of inside_paths were still being processed [sugarskull, #137]
+- remove support for Rails 4.2+ in branch 0.x [pitr]
+
 ### 0.2.0
 
 - Add config.angular_templates.inside_paths [sars, #90]
