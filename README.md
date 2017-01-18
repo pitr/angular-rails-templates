@@ -217,7 +217,7 @@ config.angular_templates.htmlcompressor = {
 
 ## License
 
-MIT License. Copyright 2014 Pitr
+MIT License. Copyright 2017 pitr
 
 ## Authors & contributors
 
