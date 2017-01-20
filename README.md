@@ -204,7 +204,7 @@ By default this gem looks only at templates with `.html` suffix, eg. `foo.html` 
 
 ## License
 
-MIT License. Copyright 2016 pitr
+MIT License. Copyright 2017 pitr
 
 ## Authors & contributors
 
