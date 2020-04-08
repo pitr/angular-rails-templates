@@ -2,6 +2,8 @@
 
 ### [Unreleased]
 
+### 1.1.0
+
 - Support Rails 6
 - Use global Rails namespace [merqlove, #148]
 
