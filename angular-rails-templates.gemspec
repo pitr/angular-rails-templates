@@ -16,12 +16,13 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
 
-  s.add_dependency "railties", ">= 4.2", "< 7.1"
+  s.add_dependency "railties", ">= 5.0", "< 7.1"
   s.add_dependency "sprockets", ">= 3.0", '< 5'
   s.add_dependency "sprockets-rails"
   s.add_dependency "tilt"
 
-  s.add_development_dependency "minitest"
+  # There is a deprecation warning indicating the build will fail with Minitest 6
+  s.add_development_dependency "minitest", '< 6'
   s.add_development_dependency "capybara"
   s.add_development_dependency "uglifier"
 end
