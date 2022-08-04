@@ -13,7 +13,7 @@ Adds your HTML templates into Angular's `$templateCache` using Rails asset pipel
 
 Branch      | Build Status
 ------------|---------
-master      | [![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=master)](https://travis-ci.org/pitr/angular-rails-templates)
+master      | [![Build Status](https://github.com/pitr/angular-rails-templates/workflows/build/badge.svg)](https://github.com/pitr/angular-rails-templates)
 0-x-stable  | [![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=0-x-stable)](https://travis-ci.org/pitr/angular-rails-templates)
 
 It removes the need for AJAX calls to retrieve the templates (or for you to manually set them into the DOM).
