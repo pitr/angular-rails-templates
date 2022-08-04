@@ -25,8 +25,12 @@ jobs:
           - rails_5.2_sprockets4.gemfile
           - rails_6.0.gemfile
           - rails_6.1.gemfile
+          - rails_7.0.gemfile
           #- rails_head.gemfile
           #- rails_head_sprockets4.gemfile
+        exclude:
+        - gemfile: rails_7.0.gemfile
+          ruby: 2.6
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}
       AWS_REGION: us-east1
