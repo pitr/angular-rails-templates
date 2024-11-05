@@ -2,6 +2,10 @@
 
 ### [Unreleased]
 
+### 1.3.0
+
+- Support Rails 8
+
 ### 1.2.2
 
 - Support Rails 7.2

@@ -25,6 +25,7 @@ jobs:
           - rails_7.0
           - rails_7.1
           - rails_7.2
+          - rails_8.0.0rc2
         include:
           - gemfile: rails_5.0
             ruby: '2.6'
