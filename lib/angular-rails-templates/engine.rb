@@ -37,7 +37,12 @@ module AngularRailsTemplates
 
       # Sprockets Cache Busting
       # If ART's version or settings change, expire and recompile all assets
-      hash_digest = defined?(ActiveSupport::Digest) ? ActiveSupport::Digest : Digest::MD5
+      hash_digest = if defined?(ActiveSupport::Digest)
+                      app.config.active_support.hash_digest_class || ActiveSupport::Digest.hash_digest_class
+                    else
+                      Digest::MD5
+                    end
+
       app.config.assets.version = [
         app.config.assets.version,
         'ART',
