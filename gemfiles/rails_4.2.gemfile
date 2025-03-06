@@ -4,7 +4,7 @@ gem "temple", "~> 0.9.1"
 gem "capybara", "~> 3.34.0"
 gem "bigdecimal", "~> 1.4.0"
 gem "rails", "~> 4.2.0"
-gem "slim-rails", "~> 3.0.2", require: "slim-rails"
+gem "slim-rails", require: "slim-rails"
 gem "haml"
 gem "kramdown"
 
