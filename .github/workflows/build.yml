@@ -69,7 +69,6 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
     - run: gem install bundler:2.0.0.pre.3
     - run: bundle _2.0.0.pre.3_ lock
     - run: bundle _2.0.0.pre.3_ exec rake test
