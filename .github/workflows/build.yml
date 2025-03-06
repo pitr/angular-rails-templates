@@ -30,14 +30,6 @@ jobs:
           - gemfile: rails_8.0
             ruby: '3.1'
         include:
-          - gemfile: rails_4.2
-            ruby: '2.6'
-          - gemfile: rails_4.2_sprockets4
-            ruby: '2.6'
-          - gemfile: rails_4.2
-            ruby: '2.7'
-          - gemfile: rails_4.2_sprockets4
-            ruby: '2.7'
           - gemfile: rails_5.0
             ruby: '2.6'
           - gemfile: rails_5.0_sprockets4
@@ -57,3 +49,27 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
     - run: bundle exec rake test
+  old_bundler_test:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - '2.6'
+          - '2.7'
+        gemfile:
+          - rails_4.2
+          - rails_4.2_sprockets4
+
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
+      AWS_REGION: us-east1
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - run: gem install bundler:2.0.0.pre.3
+    - run: bundle _2.0.0.pre.3_ lock
+    - run: bundle _2.0.0.pre.3_ exec rake test
