@@ -20,6 +20,8 @@ jobs:
           - '3.2'
           - '3.3'
         gemfile:
+          - rails_4.2
+          - rails_4.2_sprockets4
           - rails_6.0
           - rails_6.1
           - rails_7.0
