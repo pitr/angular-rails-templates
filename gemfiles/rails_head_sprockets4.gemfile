@@ -6,6 +6,6 @@ gem "slim-rails"
 gem "haml"
 gem "kramdown"
 
-gem 'coveralls', require: false
+gem 'coveralls_reborn', require: false
 
 gemspec :path => ".././"
