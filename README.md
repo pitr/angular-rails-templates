@@ -3,9 +3,6 @@
 [![Gem Version](https://badge.fury.io/rb/angular-rails-templates.png)](http://badge.fury.io/rb/angular-rails-templates)
 [![Coverage Status](https://coveralls.io/repos/github/pitr/angular-rails-templates/badge.svg?branch=master)](https://coveralls.io/github/pitr/angular-rails-templates?branch=master)
 [![Code Climate](https://codeclimate.com/github/pitr/angular-rails-templates/badges/gpa.svg)](https://codeclimate.com/github/pitr/angular-rails-templates)
-[![Issue Stats](http://issuestats.com/github/pitr/angular-rails-templates/badge/pr)](http://issuestats.com/github/pitr/angular-rails-templates)
-[![Issue Stats](http://issuestats.com/github/pitr/angular-rails-templates/badge/issue)](http://issuestats.com/github/pitr/angular-rails-templates)
-[![Stories in Ready](https://badge.waffle.io/pitr/angular-rails-templates.png?label=ready&title=Ready)](https://waffle.io/pitr/angular-rails-templates)
 
 Adds your HTML templates into Angular's `$templateCache` using Rails asset pipeline.
 
@@ -13,8 +10,7 @@ Adds your HTML templates into Angular's `$templateCache` using Rails asset pipel
 
 Branch      | Build Status
 ------------|---------
-master      | [![Build Status](https://github.com/pitr/angular-rails-templates/workflows/build/badge.svg)](https://github.com/pitr/angular-rails-templates)
-0-x-stable  | [![Build Status](https://travis-ci.org/pitr/angular-rails-templates.png?branch=0-x-stable)](https://travis-ci.org/pitr/angular-rails-templates)
+master      | [![Build Status](https://github.com/pitr/angular-rails-templates/workflows/build/badge.svg?branch=master)](https://github.com/pitr/angular-rails-templates)
 
 It removes the need for AJAX calls to retrieve the templates (or for you to manually set them into the DOM).
 
