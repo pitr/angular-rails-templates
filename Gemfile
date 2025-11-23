@@ -5,6 +5,6 @@ gem "haml"
 gem "slim-rails"
 gem "kramdown"
 
-gem 'coveralls', require: false
+gem 'coveralls_reborn', require: false
 
 gemspec

@@ -102,7 +102,7 @@ describe "user assets integration" do
       visit '/assets/subfolder/haml_template.js'
       page.source.must_include %Q{// source: app/assets/javascripts/subfolder/haml_template.html.haml}
       page.source.must_include %Q{$templateCache.put("subfolder/haml_template.html"}
-      page.source.must_include %q{"<div class='hello-world'>Subfolder-HAML</div>"}
+      page.source.must_match /['"]<div class=['"]hello-world['"]>Subfolder-HAML<\/div>['"]/ # depending on versions, single and double quotes are swapped
     end
   end
 
