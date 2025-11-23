@@ -10,7 +10,7 @@ Adds your HTML templates into Angular's `$templateCache` using Rails asset pipel
 
 Branch      | Build Status
 ------------|---------
-master      | [![Build Status](https://github.com/pitr/angular-rails-templates/workflows/build/badge.svg?branch=master)](https://github.com/pitr/angular-rails-templates)
+master      | [![Build Status](https://github.com/pitr/angular-rails-templates/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pitr/angular-rails-templates)
 
 It removes the need for AJAX calls to retrieve the templates (or for you to manually set them into the DOM).
 
