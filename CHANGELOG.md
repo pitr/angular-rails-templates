@@ -2,6 +2,10 @@
 
 ### [Unreleased]
 
+### 1.4.0
+
+- Support Rails 8.1 (#178) (Jade Alejandra Ornelas)
+
 ### 1.3.1
 
 - Fix broken tests due to missing Logger (#174) (Eric Helms)
